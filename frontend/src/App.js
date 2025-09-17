@@ -5,6 +5,8 @@ import Home from './Components/Home/home';
 
 import FuelLevels from './Components/FuelLevel/FuelLevel';
 
+import EVRegister from './Components/EVRegister/EVRegister';
+
 
 
 
@@ -20,6 +22,7 @@ function App() {
           <Route path="/mainhome" element={<Home/>}/>
 
                     <Route path="/fuel-levels" element={<FuelLevels />} />
+                    <Route path="/evregister" element={<EVRegister />} />
 
 
 
