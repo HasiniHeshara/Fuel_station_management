@@ -5,6 +5,9 @@ import Home from './Components/Home/home';
 
 import FuelLevels from './Components/FuelLevel/FuelLevel';
 
+import EVBookingPayment from './Components/EVPaymentForm/EVBookingPayment';
+
+
 
 
 
@@ -19,7 +22,10 @@ function App() {
           <Route path="/" element={<Home/>}/>
           <Route path="/mainhome" element={<Home/>}/>
 
-                    <Route path="/fuel-levels" element={<FuelLevels />} />
+          <Route path="/fuel-levels" element={<FuelLevels />} />
+
+          <Route path="/EVBookingPayment" element={<EVBookingPayment />} />
+
 
 
 
