@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import logo from "../../assets/f2.png";
-import "./EVList.css"; // Make sure this matches your CSS file name
+import "./EVList.css"; 
 
 function EVProfile() {
   const { id } = useParams();
