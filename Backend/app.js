@@ -1,5 +1,6 @@
 const express = require("express");
 const mongoose = require("mongoose");
+const cors = require("cors");
 
 const Memberrouter = require("./Routes/MemberRoutes");
 const ev = require("./Routes/EVRoutes");
@@ -13,7 +14,7 @@ const app = express();
 
 // Middleware
 app.use(express.json());
-// app.use(cors()); // Uncomment if needed
+app.use(cors());  // ✅ Enable CORS
 
 // Routes
 app.use("/Members", Memberrouter);
@@ -24,11 +25,12 @@ app.use("/evpayment", EVpayment);
 app.use("/api/payments", paymentRoutes);
 
 // ✅ MongoDB Connection
-const uri = "mongodb+srv://admin:Z3etldNpHQo1A5A6@cluster0.ykdbywy.mongodb.net/";
-
-mongoose.connect(uri)
-  .then(() => console.log("✅ Connected to MongoDB"))
-  .catch((err) => console.error("❌ MongoDB connection error:", err.message));
+mongoose.connect("mongodb+srv://admin:Z3etldNpHQo1A5A6@cluster0.ykdbywy.mongodb.net/fuelstation", {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+})
+.then(() => console.log("✅ Connected to MongoDB"))
+.catch((err) => console.error("❌ MongoDB connection error:", err.message));
 
 // Server
 const PORT = process.env.PORT || 5000;
