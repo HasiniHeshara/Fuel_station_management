@@ -8,7 +8,7 @@ import FuelLevels from './Components/FuelLevel/FuelLevel';
 import EVRegister from './Components/EVRegister/EVRegister';
 import EVLogin from './Components/EVLogin/EVLogin';
 
-
+import AddStock from './Components/AddStock/AddStock';
 
 
 
@@ -26,7 +26,7 @@ function App() {
                     <Route path="/evregister" element={<EVRegister />} />
                     <Route path="/evlog" element={<EVLogin />} />
 
-
+                    <Route path="/addstock" element={<AddStock/>}/>
 
 
           </Routes>
