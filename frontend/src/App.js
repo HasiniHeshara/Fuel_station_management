@@ -5,14 +5,12 @@ import Home from './Components/Home/home';
 
 import FuelLevels from './Components/FuelLevel/FuelLevel';
 
-<<<<<<< HEAD
 import EVBookingPayment from './Components/EVPaymentFrom/EVBookingPayement';
 
-=======
 import EVRegister from './Components/EVRegister/EVRegister';
 import EVLogin from './Components/EVLogin/EVLogin';
 import EVProfile from './Components/EVList/EVList';
->>>>>>> main
+
 
 
 
@@ -28,14 +26,13 @@ function App() {
           <Route path="/" element={<Home/>}/>
           <Route path="/mainhome" element={<Home/>}/>
 
-<<<<<<< HEAD
+
           <Route path="/fuel-levels" element={<FuelLevels />} />
-=======
                     <Route path="/fuel-levels" element={<FuelLevels />} />
                     <Route path="/evregister" element={<EVRegister />} />
                     <Route path="/evlog" element={<EVLogin />} />
                     <Route path="/ev/profile/:id" element={<EVProfile />} />
->>>>>>> main
+
 
           <Route path="/EVBookingPayment" element={<EVBookingPayment />} />
 
