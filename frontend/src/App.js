@@ -7,6 +7,7 @@ import FuelLevels from './Components/FuelLevel/FuelLevel';
 
 import EVRegister from './Components/EVRegister/EVRegister';
 import EVLogin from './Components/EVLogin/EVLogin';
+import EVProfile from './Components/EVList/EVList';
 
 
 
@@ -25,6 +26,7 @@ function App() {
                     <Route path="/fuel-levels" element={<FuelLevels />} />
                     <Route path="/evregister" element={<EVRegister />} />
                     <Route path="/evlog" element={<EVLogin />} />
+                    <Route path="/ev/profile/:id" element={<EVProfile />} />
 
 
 
