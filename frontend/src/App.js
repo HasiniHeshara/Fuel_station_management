@@ -10,6 +10,9 @@ import EVBookingPayment from './Components/EVPaymentFrom/EVBookingPayement';
 import EVRegister from './Components/EVRegister/EVRegister';
 import EVLogin from './Components/EVLogin/EVLogin';
 import EVProfile from './Components/EVList/EVList';
+import FactoryLogin from './Components/FactoryLogin/FactoryLogin';
+import FRegister from './Components/AddFactory/RegisterFactory';
+import FactoryProfile from './Components/FactoryProfile/FactoryProfile';
 import Contact from './Components/Contact/Contact';
 import Admin from './Components/Admin/Admin';
 
@@ -36,6 +39,9 @@ function App() {
                     <Route path="/evregister" element={<EVRegister />} />
                     <Route path="/evlog" element={<EVLogin />} />
                     <Route path="/ev/profile/:id" element={<EVProfile />} />
+                    <Route path="/flogin" element={<FactoryLogin />} />
+                    <Route path="/fRegister" element={<FRegister />} />
+                    <Route path="/factory/profile/:id" element={<FactoryProfile />} />
 
                     <Route path="/addstock" element={<AddStock/>}/>
 
