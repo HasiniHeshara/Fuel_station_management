@@ -9,6 +9,7 @@ const fuelpaymentRoutes = require("./Routes/FuelPaymentRoutes");
 const EVpayment = require("./Routes/EVPaymentRoutes");
 const combinedRoutes = require("./Routes/EVCombinedRoutes");
 const paymentRoutes = require("./Routes/BulkincomeRoutes");
+const factory = require('./Routes/Factory');
 
 const app = express();
 
@@ -23,6 +24,7 @@ app.use("/fuelprices", fuelPriceRoutes);
 app.use("/fuelpayments", fuelpaymentRoutes);
 app.use("/evpayment", EVpayment);
 app.use("/api/payments", paymentRoutes);
+app.use("/factory", factory);
 
 // ✅ MongoDB Connection
 mongoose.connect("mongodb+srv://admin:Z3etldNpHQo1A5A6@cluster0.ykdbywy.mongodb.net/fuelstation", {
