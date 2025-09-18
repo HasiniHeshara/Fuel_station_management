@@ -10,6 +10,7 @@ const EVpayment = require("./Routes/EVPaymentRoutes");
 const combinedRoutes = require("./Routes/EVCombinedRoutes");
 const paymentRoutes = require("./Routes/BulkincomeRoutes");
 const factory = require('./Routes/Factory');
+const Stockrouter = require("./Routes/StockRoutes");
 
 const app = express();
 
@@ -27,6 +28,7 @@ app.use("/fuelpayments", fuelpaymentRoutes);
 app.use("/evpayment", EVpayment);
 app.use("/api/payments", paymentRoutes);
 app.use("/factory", factory);
+app.use("/Stocks", Stockrouter);
 
 
 // ✅ MongoDB Connection
