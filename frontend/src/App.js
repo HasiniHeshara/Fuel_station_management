@@ -17,6 +17,9 @@ import AddStock from './Components/AddStock/AddStock';
 
 
 
+import DisplayRecord from './Components/DisplayRecord/DisplayRecord';
+
+
 function App() {
   return (
     <div>
@@ -34,15 +37,15 @@ function App() {
                     <Route path="/evlog" element={<EVLogin />} />
                     <Route path="/ev/profile/:id" element={<EVProfile />} />
 
-<<<<<<< HEAD
                     <Route path="/addstock" element={<AddStock/>}/>
-=======
+
+
+                    <Route path="/sales" element={<DisplayRecord />} />
 
           <Route path="/EVBookingPayment" element={<EVBookingPayment />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/admin" element={<Admin />} />
 
->>>>>>> main
 
 
           </Routes>
