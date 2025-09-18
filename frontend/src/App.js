@@ -16,6 +16,11 @@ import FactoryProfile from './Components/FactoryProfile/FactoryProfile';
 import Contact from './Components/Contact/Contact';
 import Admin from './Components/Admin/Admin';
 
+import PaymentPage from './Components/Payment/payment';
+import DisplayPayment from './Components/DisplayPayment/DisplayPayment';
+import UpdatePayment from './Components/UpdatePayment/UpdatePayment';
+import PaymentDetails from './Components/SinglePayment/SinglePayment';
+
 import AddStock from './Components/AddStock/AddStock';
 import DisplayStock from './Components/StockDisplay/StockDisplay';
 
@@ -54,6 +59,12 @@ function App() {
           <Route path="/EVBookingPayment" element={<EVBookingPayment />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/admin" element={<Admin />} /> 
+
+
+          <Route path="/payment/:id" element={<PaymentPage />} />
+          <Route path="/displaypayments" element={<DisplayPayment />} />
+          <Route path="/updatepayment/:id" element={<UpdatePayment />} />
+          <Route path="/paymentdetails/:id" element={<PaymentDetails />} />          
 
 
 
