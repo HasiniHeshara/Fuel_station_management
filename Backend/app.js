@@ -14,7 +14,7 @@ const app = express();
 
 // Middleware
 app.use(express.json());
-app.use(cors());  // ✅ Enable CORS
+app.use(cors());   
 
 // Routes
 app.use("/Members", Memberrouter);
