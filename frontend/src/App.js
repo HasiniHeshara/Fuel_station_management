@@ -27,7 +27,11 @@ import DisplayStock from './Components/StockDisplay/StockDisplay';
 import DisplayRecord from './Components/DisplayRecord/DisplayRecord';
 import BulkOrderForm from './Components/BulkOrderFrom/BulkOrderForm';
 
-
+import FuelStations from './Components/FuelStations/FuelStations';
+import ServicesPage from './Components/ServicePage/ServicesPage';
+import FuelPricesPage from './Components/FuelPricePage/FuelPricesPage';
+import PrivacyPolicy from './Components/PrivacyPolicy/PrivacyPolicy';
+import TermsOfService from './Components/PrivacyPolicy/TermsOfService';
 
 function App() {
   return (
@@ -66,7 +70,13 @@ function App() {
           <Route path="/payment/:id" element={<PaymentPage />} />
           <Route path="/displaypayments" element={<DisplayPayment />} />
           <Route path="/updatepayment/:id" element={<UpdatePayment />} />
-          <Route path="/paymentdetails/:id" element={<PaymentDetails />} />          
+          <Route path="/paymentdetails/:id" element={<PaymentDetails />} />       
+
+            <Route path="/stations" element={<FuelStations />} />
+          <Route path="/services" element={<ServicesPage />} />
+          <Route path="/fuel-prices" element={<FuelPricesPage />} />   
+            <Route path="/privacy" element={<PrivacyPolicy/>} />
+          <Route path="/term" element={<TermsOfService/>} />   
 
 
 

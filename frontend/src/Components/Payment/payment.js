@@ -125,7 +125,7 @@ function PaymentPage() {
     <div className="payment-page">
       <img src={logo} alt="Logo" className="payment-logo" />
       <h2>Payment Details</h2>
-      <Link to="/" className="back-link">⬅ Back to Home</Link>
+      <Link to="/admin" className="back-link">⬅ Back to Admin</Link>
 
       {loading ? (
         <p>Loading...</p>
