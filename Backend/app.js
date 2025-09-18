@@ -25,6 +25,8 @@ app.use("/fuelpayments", fuelpaymentRoutes);
 app.use("/evpayment", EVpayment);
 app.use("/api/payments", paymentRoutes);
 app.use("/factory", factory);
+app.use("/evcombined", combinedRoutes);
+
 
 // ✅ MongoDB Connection
 mongoose.connect("mongodb+srv://admin:Z3etldNpHQo1A5A6@cluster0.ykdbywy.mongodb.net/fuelstation", {
