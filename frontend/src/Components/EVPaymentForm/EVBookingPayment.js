@@ -48,26 +48,78 @@ function EVBookingPayment() {
     document.body.appendChild(script);
   }, []);
 
-  const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
+  const handleChange = (e) =>
+    setForm({ ...form, [e.target.name]: e.target.value });
+
+  // 🔹 Card, Expiry & CVV validation handler
+  const handleCardInput = (e) => {
+    const { name, value } = e.target;
+
+    if (name === "card") {
+      const digits = value.replace(/\D/g, "").slice(0, 16);
+      setForm({ ...form, card: digits });
+    }
+
+    if (name === "expdate") {
+      let digits = value.replace(/\D/g, "").slice(0, 4);
+      if (digits.length >= 3) {
+        digits = digits.slice(0, 2) + "/" + digits.slice(2);
+      }
+      setForm({ ...form, expdate: digits });
+    }
+
+    if (name === "cvv") {
+      const digits = value.replace(/\D/g, "").slice(0, 3);
+      setForm({ ...form, cvv: digits });
+    }
+  };
 
   const handleDateChange = async (e) => {
     const selectedDate = e.target.value;
     setForm({ ...form, date: selectedDate, slot: "" });
     try {
-      const res = await axios.get(`http://localhost:5000/appoinment/getone?date=${selectedDate}`);
-      const booked = res.data.map(item => item.slot);
+      const res = await axios.get(
+        `http://localhost:5000/appoinment/getone?date=${selectedDate}`
+      );
+      const booked = res.data.map((item) => item.slot);
       setBookedSlots(booked);
     } catch (err) {
       console.error("Error fetching booked slots:", err);
     }
   };
 
+  // 🔹 Expiry date validation (must be future date)
+  const validateExpiry = (exp) => {
+    if (!/^\d{2}\/\d{2}$/.test(exp)) return false;
+    const [mm, yy] = exp.split("/").map(Number);
+    if (mm < 1 || mm > 12) return false;
+
+    const now = new Date();
+    const currentYear = now.getFullYear() % 100;
+    const currentMonth = now.getMonth() + 1;
+
+    if (yy < currentYear) return false;
+    if (yy === currentYear && mm < currentMonth) return false;
+
+    return true;
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setMessage("");
 
-    if (!/^\d{16}$/.test(form.card)) { setMessage("Card number must be exactly 16 digits."); return; }
-    if (!/^\d{3}$/.test(form.cvv)) { setMessage("CVV must be exactly 3 digits."); return; }
+    if (!/^\d{16}$/.test(form.card)) {
+      setMessage("Card number must be exactly 16 digits.");
+      return;
+    }
+    if (!validateExpiry(form.expdate)) {
+      setMessage("Expiry date must be valid and in the future (MM/YY).");
+      return;
+    }
+    if (!/^\d{3}$/.test(form.cvv)) {
+      setMessage("CVV must be exactly 3 digits.");
+      return;
+    }
 
     setLoading(true);
 
@@ -79,14 +131,23 @@ function EVBookingPayment() {
         setShowPopup(true);
       }
     } catch (err) {
-      if (err.response?.status === 409) setMessage("This slot is already booked.");
+      if (err.response?.status === 409)
+        setMessage("This slot is already booked.");
       else setMessage("Booking failed. Please try again.");
-    } finally { setLoading(false); }
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handlePayHerePayment = async () => {
-    if (!payhereLoaded) { alert("PayHere SDK not loaded yet."); return; }
-    if (!form.date || !form.slot) { alert("Please select a date and slot."); return; }
+    if (!payhereLoaded) {
+      alert("PayHere SDK not loaded yet.");
+      return;
+    }
+    if (!form.date || !form.slot) {
+      alert("Please select a date and slot.");
+      return;
+    }
 
     const amount = priceMap[form.vtype];
     const orderId = `EV-${Date.now()}`;
@@ -118,7 +179,7 @@ function EVBookingPayment() {
         country: "Sri Lanka",
       };
 
-      window.payhere.onCompleted = async function(orderId) {
+      window.payhere.onCompleted = async function (orderId) {
         alert("Payment completed. Order ID: " + orderId);
 
         try {
@@ -130,8 +191,8 @@ function EVBookingPayment() {
             date: form.date,
             slot: form.slot,
             paymentStatus: "Paid",
-            orderId,   
-            amount
+            orderId,
+            amount,
           });
 
           const newBookingId = bookingRes.data.booking._id;
@@ -144,22 +205,30 @@ function EVBookingPayment() {
             amount,
             expdate: form.expdate,
             cvv: parseInt(form.cvv),
-            orderId
+            orderId,
           });
 
           setShowPopup(true);
-
         } catch (err) {
-          console.error("Booking creation failed after PayHere:", err.response?.data || err.message);
-          alert("Booking failed after payment. Please contact support with Order ID: " + orderId);
+          console.error(
+            "Booking creation failed after PayHere:",
+            err.response?.data || err.message
+          );
+          alert(
+            "Booking failed after payment. Please contact support with Order ID: " +
+              orderId
+          );
         }
       };
 
-      window.payhere.onDismissed = function() { alert("Payment popup closed."); };
-      window.payhere.onError = function(error) { alert("Payment error: " + error); };
+      window.payhere.onDismissed = function () {
+        alert("Payment popup closed.");
+      };
+      window.payhere.onError = function (error) {
+        alert("Payment error: " + error);
+      };
 
       window.payhere.startPayment(payment);
-
     } catch (err) {
       console.error("Error starting PayHere payment:", err);
       alert("Failed to start PayHere payment.");
@@ -172,7 +241,9 @@ function EVBookingPayment() {
   return (
     <div className="ev-bg">
       <nav className="ev-navbar">
-        <div><span>Dasu Filling Station, Galle. EV Charging </span></div>
+        <div>
+          <span>Dasu Filling Station, Galle. EV Charging </span>
+        </div>
         <div className="paymentbooking-navbar-links">
           <Link to="/">Home</Link>
           <Link to="/evlog">Login</Link>
@@ -184,11 +255,36 @@ function EVBookingPayment() {
         <div className="ev-booking-payment-container">
           <h2>EV Charging Booking</h2>
           <form className="ev-booking-form" onSubmit={handleSubmit}>
-            <input name="name" placeholder="Full Name" value={form.name} onChange={handleChange} required />
-            <input name="gmail" type="email" placeholder="Email" value={form.gmail} onChange={handleChange} required />
-            <input name="password" type="password" placeholder="Password" value={form.password} onChange={handleChange} required />
+            <input
+              name="name"
+              placeholder="Full Name"
+              value={form.name}
+              onChange={handleChange}
+              required
+            />
+            <input
+              name="gmail"
+              type="email"
+              placeholder="Email"
+              value={form.gmail}
+              onChange={handleChange}
+              required
+            />
+            <input
+              name="password"
+              type="password"
+              placeholder="Password"
+              value={form.password}
+              onChange={handleChange}
+              required
+            />
 
-            <select name="vtype" value={form.vtype} onChange={handleChange} required>
+            <select
+              name="vtype"
+              value={form.vtype}
+              onChange={handleChange}
+              required
+            >
               <option value="Car">Car - Rs. 1000</option>
               <option value="Bike">Bike - Rs. 500</option>
               <option value="Other">Other - Rs. 700</option>
@@ -203,7 +299,12 @@ function EVBookingPayment() {
               required
             />
 
-            <select name="slot" value={form.slot} onChange={handleChange} required>
+            <select
+              name="slot"
+              value={form.slot}
+              onChange={handleChange}
+              required
+            >
               <option value="">Select Slot</option>
               {slots.map((s) => (
                 <option key={s} value={s} disabled={bookedSlots.includes(s)}>
@@ -221,21 +322,48 @@ function EVBookingPayment() {
                 </div>
 
                 <h3>Payment Details</h3>
-                <input name="card" placeholder="Card Number" value={form.card} onChange={handleChange} maxLength={16} required />
-                <input name="expdate" placeholder="MM/YY" value={form.expdate} onChange={handleChange} maxLength={5} required />
-                <input name="cvv" type="password" placeholder="CVV" value={form.cvv} onChange={handleChange} maxLength={3} required />
+                <input
+                  name="card"
+                  placeholder="Card Number"
+                  value={form.card}
+                  onChange={handleCardInput}
+                  maxLength={16}
+                  required
+                />
+                <input
+                  name="expdate"
+                  placeholder="MM/YY"
+                  value={form.expdate}
+                  onChange={handleCardInput}
+                  maxLength={5}
+                  required
+                />
+                <input
+                  name="cvv"
+                  placeholder="CVV"
+                  value={form.cvv}
+                  onChange={handleCardInput}
+                  maxLength={3}
+                  required
+                />
               </>
             )}
 
             <button type="submit" disabled={loading}>
-              {loading ? "Processing..." : `Confirm Booking & Pay Rs. ${priceMap[form.vtype]}`}
+              {loading
+                ? "Processing..."
+                : `Confirm Booking & Pay Rs. ${priceMap[form.vtype]}`}
             </button>
 
             <button
               type="button"
               onClick={handlePayHerePayment}
               disabled={loading}
-              style={{ marginTop: "10px", backgroundColor: "#0d6efd", color: "#fff" }}
+              style={{
+                marginTop: "10px",
+                backgroundColor: "#0d6efd",
+                color: "#fff",
+              }}
             >
               Pay with PayHere Rs. {priceMap[form.vtype]}
             </button>
@@ -251,8 +379,12 @@ function EVBookingPayment() {
             <h3>🎉 Booking Completed!</h3>
             <p>Would you like to rate your experience?</p>
             <div className="popup-buttons">
-              <button onClick={handleRateNow} className="popup-rate-btn"><FaStar /> Give Rating</button>
-              <button onClick={handleLater} className="popup-later-btn">Not Now</button>
+              <button onClick={handleRateNow} className="popup-rate-btn">
+                <FaStar /> Give Rating
+              </button>
+              <button onClick={handleLater} className="popup-later-btn">
+                Not Now
+              </button>
             </div>
           </div>
         </div>
