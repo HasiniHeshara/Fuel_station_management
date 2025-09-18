@@ -34,15 +34,11 @@ function App() {
                     <Route path="/evlog" element={<EVLogin />} />
                     <Route path="/ev/profile/:id" element={<EVProfile />} />
 
-<<<<<<< HEAD
-                    <Route path="/addstock" element={<AddStock/>}/>
-=======
 
           <Route path="/EVBookingPayment" element={<EVBookingPayment />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/admin" element={<Admin />} />
 
->>>>>>> main
 
 
           </Routes>
