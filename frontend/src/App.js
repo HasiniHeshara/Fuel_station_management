@@ -13,6 +13,11 @@ import EVProfile from './Components/EVList/EVList';
 import FactoryLogin from './Components/FactoryLogin/FactoryLogin';
 import FRegister from './Components/AddFactory/RegisterFactory';
 import FactoryProfile from './Components/FactoryProfile/FactoryProfile';
+import Contact from './Components/Contact/Contact';
+import Admin from './Components/Admin/Admin';
+
+
+
 
 
 function App() {
@@ -37,6 +42,8 @@ function App() {
 
 
           <Route path="/EVBookingPayment" element={<EVBookingPayment />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/admin" element={<Admin />} />
 
 
 
