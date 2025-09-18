@@ -43,10 +43,12 @@ function App() {
                     <Route path="/fRegister" element={<FRegister />} />
                     <Route path="/factory/profile/:id" element={<FactoryProfile />} />
 
+
                     <Route path="/addstock" element={<AddStock/>}/>
 
 
                     <Route path="/sales" element={<DisplayRecord />} />
+
 
           <Route path="/EVBookingPayment" element={<EVBookingPayment />} />
           <Route path="/contact" element={<Contact />} />
