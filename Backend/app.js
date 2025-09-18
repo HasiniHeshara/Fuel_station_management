@@ -15,6 +15,7 @@ const Stockrouter = require("./Routes/StockRoutes");
 const Appoinment = require('./Routes/AppoinmentRoutes');
 
 
+
 const app = express();
 
 // Middleware
@@ -30,10 +31,11 @@ app.use("/fuelprices", fuelPriceRoutes);
 app.use("/fuelpayments", fuelpaymentRoutes);
 app.use("/evpayment", EVpayment);
 app.use('/api/bulkorders', bulkOrderRoutes);
+app.use("/appoinment", Appoinment);
+
 app.use("/api/payments", paymentRoutes);
 app.use("/factory", factory);
 app.use("/Stocks", Stockrouter);
-app.use("/appoinment", Appoinment);
 
 // ✅ MongoDB Connection
 mongoose.connect("mongodb+srv://admin:Z3etldNpHQo1A5A6@cluster0.ykdbywy.mongodb.net/fuelstation", {
