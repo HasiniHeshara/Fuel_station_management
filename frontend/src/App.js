@@ -24,7 +24,6 @@ import PaymentDetails from './Components/SinglePayment/SinglePayment';
 import AddStock from './Components/AddStock/AddStock';
 import DisplayStock from './Components/StockDisplay/StockDisplay';
 
-
 import DisplayRecord from './Components/DisplayRecord/DisplayRecord';
 
 
