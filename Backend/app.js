@@ -7,6 +7,7 @@ const ev = require("./Routes/EVRoutes");
 const fuelPriceRoutes = require("./Routes/fuelPriceRoutes");
 const fuelpaymentRoutes = require("./Routes/FuelPaymentRoutes");
 const EVpayment = require("./Routes/EVPaymentRoutes");
+const bulkOrderRoutes = require('./Routes/BulkOrderRoutes');
 const combinedRoutes = require("./Routes/EVCombinedRoutes");
 const paymentRoutes = require("./Routes/BulkincomeRoutes");
 const factory = require('./Routes/Factory');
@@ -18,7 +19,7 @@ const app = express();
 app.use(express.json());
 app.use(cors());   
 
-// Routes
+// Routes 
 app.use("/evcombined", combinedRoutes);
 
 app.use("/Members", Memberrouter);
@@ -26,6 +27,7 @@ app.use("/ev", ev);
 app.use("/fuelprices", fuelPriceRoutes);
 app.use("/fuelpayments", fuelpaymentRoutes);
 app.use("/evpayment", EVpayment);
+app.use('/api/bulkorders', bulkOrderRoutes);
 app.use("/api/payments", paymentRoutes);
 app.use("/factory", factory);
 app.use("/Stocks", Stockrouter);
