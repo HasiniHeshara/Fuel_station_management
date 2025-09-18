@@ -1,0 +1,211 @@
+/* Page Background */
+.d-payment-page-unique {
+  min-height: 100vh;
+  background: 
+    linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.25)),
+    url('../../assets/f1.jpg') no-repeat center center fixed;
+  background-size: cover;
+  font-family: 'Poppins', sans-serif;
+  padding: 100px 20px 40px;
+  color: #e0f2fe;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+/* Header */
+.d-payment-header h1 {
+  font-size: 2.4rem;
+  margin-bottom: 35px;
+  text-shadow: 1px 1px 6px rgba(0,0,0,0.8);
+  color: #ffffff;
+  text-align: center;
+  letter-spacing: 0.05em;
+}
+
+/* Header Buttons */
+.d-payment-header > div {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.d-back-to-admin-btn,
+.d-fuel-download-pdf-btn {
+  padding: 10px 20px;
+  font-weight: 700;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  border: none;
+  font-size: 1rem;
+}
+
+.d-back-to-admin-btn {
+  background: linear-gradient(90deg, #2563eb, #1e40af);
+  color: #fff;
+}
+
+.d-back-to-admin-btn:hover {
+  background: linear-gradient(90deg, #1e40af, #152766);
+  transform: translateY(-3px);
+}
+
+.d-fuel-download-pdf-btn {
+  background: linear-gradient(90deg, #10b981, #047857);
+  color: #fff;
+}
+
+.d-fuel-download-pdf-btn:hover {
+  background: linear-gradient(90deg, #047857, #065f46);
+  transform: translateY(-3px);
+}
+
+/* Filter Bar */
+.d-filter-bar {
+  text-align: center;
+  margin: 30px 0;
+}
+
+.d-filter-bar label {
+  font-weight: 600;
+  margin-right: 10px;
+  font-size: 1.2rem;
+  color: #ffffff;
+}
+
+.d-filter-bar input[type="date"] {
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: none;
+  background-color: #f3f4f6;
+  color: #000000;
+  font-size: 1rem;
+}
+
+.d-clear-btn {
+  margin-left: 12px;
+  padding: 8px 14px;
+  border-radius: 6px;
+  border: none;
+  background-color: #ef4444;
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.d-clear-btn:hover {
+  background-color: #b91c1c;
+  transform: translateY(-2px);
+}
+
+/* No Payments Message */
+.d-no-payments-msg {
+  font-size: 1.3rem;
+  font-style: italic;
+  color: #f3f4f6;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.6);
+  margin-top: 25px;
+  text-align: center;
+}
+
+/* Payments Grid */
+.d-payments-list {
+  width: 100%;
+  max-width: 1000px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 28px;
+}
+
+/* Individual Payment Card */
+.d-payment-entry {
+  background: rgba(255, 255, 255, 0.633);
+  backdrop-filter: blur(12px);
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.6);
+  padding: 25px 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(255,255,255,0.25);
+}
+
+.d-payment-entry:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 15px 35px rgba(0,0,0,0.7);
+}
+
+/* Payment Info */
+.d-payment-info div {
+  margin-bottom: 10px;
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #000000;
+  transition: all 0.25s ease;
+}
+
+.d-payment-info div:hover {
+  color: #10b981; /* subtle highlight on hover */
+}
+
+/* Payment Controls */
+.d-payment-controls {
+  margin-top: 18px;
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.d-btn-update,
+.d-btn-delete {
+  flex: 1;
+  padding: 12px 0;
+  font-weight: 700;
+  border-radius: 12px;
+  cursor: pointer;
+  font-size: 1.1rem;
+  color: #fff;
+  border: none;
+  transition: all 0.25s ease;
+}
+
+.d-btn-update {
+  background: linear-gradient(90deg, #3b82f6, #1d4ed8);
+}
+
+.d-btn-update:hover {
+  background: linear-gradient(90deg, #1d4ed8, #1e40af);
+  transform: translateY(-3px);
+}
+
+.d-btn-delete {
+  background: linear-gradient(90deg, #ef4444, #b91c1c);
+}
+
+.d-btn-delete:hover {
+  background: linear-gradient(90deg, #b91c1c, #991b1b);
+  transform: translateY(-3px);
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .d-payments-list {
+    grid-template-columns: 1fr;
+  }
+
+  .d-btn-update, .d-btn-delete {
+    margin: 6px 0;
+  }
+
+  .d-payment-header > div {
+    flex-direction: column;
+    gap: 12px;
+  }
+}
