@@ -17,7 +17,7 @@ import Contact from './Components/Contact/Contact';
 import Admin from './Components/Admin/Admin';
 
 import AddStock from './Components/AddStock/AddStock';
-
+import DisplayStock from './Components/StockDisplay/StockDisplay';
 
 
 import DisplayRecord from './Components/DisplayRecord/DisplayRecord';
@@ -46,7 +46,7 @@ function App() {
                     <Route path="/addstock" element={<AddStock/>}/>
 
                     <Route path="/addstock" element={<AddStock/>}/>
-
+                    <Route path="/displaystock/:id" element={<DisplayStock/>}/>
 
                     <Route path="/sales" element={<DisplayRecord />} />
 
