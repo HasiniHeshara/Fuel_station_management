@@ -18,6 +18,8 @@ app.use(express.json());
 app.use(cors());   
 
 // Routes
+app.use("/evcombined", combinedRoutes);
+
 app.use("/Members", Memberrouter);
 app.use("/ev", ev);
 app.use("/fuelprices", fuelPriceRoutes);
@@ -25,7 +27,6 @@ app.use("/fuelpayments", fuelpaymentRoutes);
 app.use("/evpayment", EVpayment);
 app.use("/api/payments", paymentRoutes);
 app.use("/factory", factory);
-app.use("/evcombined", combinedRoutes);
 
 
 // ✅ MongoDB Connection
