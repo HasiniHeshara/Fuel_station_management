@@ -19,6 +19,8 @@ app.use(express.json());
 app.use(cors());   
 
 // Routes
+app.use("/evcombined", combinedRoutes);
+
 app.use("/Members", Memberrouter);
 app.use("/ev", ev);
 app.use("/fuelprices", fuelPriceRoutes);
@@ -27,6 +29,7 @@ app.use("/evpayment", EVpayment);
 app.use("/api/payments", paymentRoutes);
 app.use("/factory", factory);
 app.use("/Stocks", Stockrouter);
+
 
 // ✅ MongoDB Connection
 mongoose.connect("mongodb+srv://admin:Z3etldNpHQo1A5A6@cluster0.ykdbywy.mongodb.net/fuelstation", {
