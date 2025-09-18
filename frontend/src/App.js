@@ -17,8 +17,6 @@ import FactoryProfile from './Components/FactoryProfile/FactoryProfile';
 
 
 
-
-
 function App() {
   return (
     <div>
