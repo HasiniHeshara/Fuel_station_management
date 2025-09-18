@@ -10,6 +10,7 @@ import EVBookingPayment from './Components/EVPaymentFrom/EVBookingPayement';
 import EVRegister from './Components/EVRegister/EVRegister';
 import EVLogin from './Components/EVLogin/EVLogin';
 import EVProfile from './Components/EVList/EVList';
+import Contact from './Components/Contact/Contact';
 
 
 
@@ -35,6 +36,7 @@ function App() {
 
 
           <Route path="/EVBookingPayment" element={<EVBookingPayment />} />
+          <Route path="/contact" element={<Contact />} />
 
 
 
