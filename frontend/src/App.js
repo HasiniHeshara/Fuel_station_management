@@ -6,6 +6,8 @@ import Home from './Components/Home/home';
 import FuelLevels from './Components/FuelLevel/FuelLevel';
 
 import EVBookingPayment from './Components/EVPaymentForm/EVBookingPayment';
+import VehicleDetailsPage from './Components/EVPaymentForm/EVPaymentList';
+
 
 import EVRegister from './Components/EVRegister/EVRegister';
 import EVLogin from './Components/EVLogin/EVLogin';
@@ -26,6 +28,11 @@ import DisplayStock from './Components/StockDisplay/StockDisplay';
 
 import DisplayRecord from './Components/DisplayRecord/DisplayRecord';
 import BulkOrderForm from './Components/BulkOrderFrom/BulkOrderForm';
+import DailySummary from './Components/FuelIncomeSummary/DailyIncomeSummary';
+import BulkPaymentList from './Components/BulkPaymentList/BulkPaymentList';
+
+     
+
 
 import FuelStations from './Components/FuelStations/FuelStations';
 import ServicesPage from './Components/ServicePage/ServicesPage';
@@ -76,7 +83,13 @@ function App() {
           <Route path="/services" element={<ServicesPage />} />
           <Route path="/fuel-prices" element={<FuelPricesPage />} />   
             <Route path="/privacy" element={<PrivacyPolicy/>} />
-          <Route path="/term" element={<TermsOfService/>} />   
+          <Route path="/term" element={<TermsOfService/>} />  
+                    <Route path="/evpayment/details" element={<VehicleDetailsPage />} />
+ 
+
+               <Route path="/bulkpaymentlist" element={<BulkPaymentList />} />
+
+                    <Route path="/summary" element={<DailySummary />} />
 
 
 

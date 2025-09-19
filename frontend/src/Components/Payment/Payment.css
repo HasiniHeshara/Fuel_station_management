@@ -89,6 +89,27 @@
   transform: translateY(-2px);
 }
 
+/* PayHere Button */
+.payhere-btn {
+  background-color: #0d6efd;
+  color: #fff;
+  padding: 12px 24px;
+  border: none;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  display: block;
+  margin: 10px auto 0; /* replaces inline margin-top */
+}
+
+.payhere-btn:hover {
+  background-color: #0b5ed7;
+  transform: translateY(-2px);
+}
+
+
 /* Animation */
 @keyframes pulse {
   0% { transform: scale(1); opacity: 1; }
