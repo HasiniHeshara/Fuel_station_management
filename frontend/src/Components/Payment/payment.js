@@ -155,13 +155,13 @@ function PaymentPage() {
             Confirm Payment (Manual)
           </button>
 
-          <button
-            className="payhere-btn"
-            onClick={handlePayHerePayment}
-            style={{ marginTop: "10px", backgroundColor: "#0d6efd", color: "#fff" }}
-          >
-            Pay with PayHere
-          </button>
+         <button
+  className="payhere-btn"
+  onClick={handlePayHerePayment}
+>
+  Pay with PayHere
+</button>
+
         </div>
       ) : (
         <p>No stock data found.</p>
