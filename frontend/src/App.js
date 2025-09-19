@@ -5,7 +5,7 @@ import Home from './Components/Home/home';
 
 import FuelLevels from './Components/FuelLevel/FuelLevel';
 
-import EVBookingPayment from './Components/EVPaymentFrom/EVBookingPayement';
+import EVBookingPayment from './Components/EVPaymentFrom/EVBookingPayment';
 
 import EVRegister from './Components/EVRegister/EVRegister';
 import EVLogin from './Components/EVLogin/EVLogin';
