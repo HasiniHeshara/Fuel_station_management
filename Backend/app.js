@@ -48,3 +48,23 @@ mongoose.connect("mongodb+srv://admin:Z3etldNpHQo1A5A6@cluster0.ykdbywy.mongodb.
 // Server
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
+
+const md5 = require('md5');
+
+const MERCHANT_ID = "1231683"; 
+const MERCHANT_SECRET = "Nzg0MzE1MTUyMTg2ODM2NzM2NDQyMDQwNTA5NjE3NzU1NzI4NTE="; 
+
+app.post('/getPayhereHash', (req, res) => {
+  const { order_id, amount, currency } = req.body;
+  if (!order_id || !amount || !currency) return res.status(400).send("Missing params");
+
+  const hash = md5(
+    MERCHANT_ID +
+    order_id +
+    parseFloat(amount).toFixed(2) +
+    currency +
+    md5(MERCHANT_SECRET).toUpperCase()
+  ).toUpperCase();
+
+  res.json({ hash });
+});
