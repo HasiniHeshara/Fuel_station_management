@@ -24,7 +24,7 @@ const chatRoutes = require("./Routes/chatRoutes");
 const initSocket = require("./Controllers/socket");
 
 const app = express();
-
+//wAnURbdzhM1ps4dw
 // Middleware
 app.use(express.json());
 app.use(cors());
@@ -54,7 +54,7 @@ const io = new Server(server, {
 
 // Initialize Socket.io for live chat
 initSocket(io);
-mongoose.connect("mongodb+srv://<>:<>@cluster0.ndjygyf.mongodb.net/")
+mongoose.connect("mongodb+srv://admin:wAnURbdzhM1ps4dw@cluster0.uzozmrm.mongodb.net/")
   .then(() => console.log("Connected to MongoDB"))
   .catch((err) => console.log(err));
 
