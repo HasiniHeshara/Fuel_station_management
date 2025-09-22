@@ -6,6 +6,8 @@ import Home from './Components/Home/home';
 import FuelLevels from './Components/FuelLevel/FuelLevel';
 
 import EVBookingPayment from './Components/EVPaymentForm/EVBookingPayment';
+import AdminBulkOrders from './Components/AdminBulkOrders/AdminBulkOrders';
+
 import VehicleDetailsPage from './Components/EVPaymentForm/EVPaymentList';
 
 
@@ -70,6 +72,8 @@ function App() {
 
 
           <Route path="/EVBookingPayment" element={<EVBookingPayment />} />
+          <Route path="/admin/bulkorders" element={<AdminBulkOrders />} />
+
           <Route path="/contact" element={<Contact />} />
           <Route path="/admin" element={<Admin />} /> 
 
