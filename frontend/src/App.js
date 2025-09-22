@@ -7,6 +7,7 @@ import FuelLevels from './Components/FuelLevel/FuelLevel';
 
 import EVBookingPayment from './Components/EVPaymentForm/EVBookingPayment';
 import VehicleDetailsPage from './Components/EVPaymentForm/EVPaymentList';
+import EVDetail from './Components/EVDetails/EVDetails';
 
 
 import EVRegister from './Components/EVRegister/EVRegister';
@@ -80,6 +81,7 @@ function App() {
 
 
           <Route path="/EVBookingPayment" element={<EVBookingPayment />} />
+          <Route path="/allEV" element={<EVDetail />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/admin" element={<Admin />} /> 
 
