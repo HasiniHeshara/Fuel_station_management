@@ -9,6 +9,7 @@ import EVBookingPayment from './Components/EVPaymentForm/EVBookingPayment';
 import AdminBulkOrders from './Components/AdminBulkOrders/AdminBulkOrders';
 
 import VehicleDetailsPage from './Components/EVPaymentForm/EVPaymentList';
+import EVDetail from './Components/EVDetails/EVDetails';
 
 
 import EVRegister from './Components/EVRegister/EVRegister';
@@ -82,8 +83,10 @@ function App() {
 
 
           <Route path="/EVBookingPayment" element={<EVBookingPayment />} />
-          <Route path="/admin/bulkorders" element={<AdminBulkOrders />} />
 
+          <Route path="/allEV" element={<EVDetail />} />
+
+          <Route path="/admin/bulkorders" element={<AdminBulkOrders />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/admin" element={<Admin />} /> 
 
