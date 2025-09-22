@@ -17,6 +17,8 @@ import FRegister from './Components/AddFactory/RegisterFactory';
 import FactoryProfile from './Components/FactoryProfile/FactoryProfile';
 import Contact from './Components/Contact/Contact';
 import Admin from './Components/Admin/Admin';
+import UpdateEV from './Components/UpdateEV/UpdateEV';
+
 
 import AddFuelMember from './Components/AddMember/AddMember';
 import DisplayFuelMember from './Components/MemberDisplay/MemberDisplay'; 
@@ -59,6 +61,7 @@ function App() {
           <Route path="/fuel-levels" element={<FuelLevels />} />
                     <Route path="/fuel-levels" element={<FuelLevels />} />
                     <Route path="/evregister" element={<EVRegister />} />
+                    <Route path="/ev/updateEV/:id" element={<UpdateEV />} />
                     <Route path="/evlog" element={<EVLogin />} />
                     <Route path="/ev/profile/:id" element={<EVProfile />} />
                     <Route path="/flogin" element={<FactoryLogin />} />
