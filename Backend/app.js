@@ -13,7 +13,7 @@ const paymentRoutes = require("./Routes/BulkincomeRoutes");
 const factory = require('./Routes/Factory');
 const Stockrouter = require("./Routes/StockRoutes");
 const Appoinment = require('./Routes/AppoinmentRoutes');
-
+const FeedbackRoutes = require("./Routes/FeedbackRoutes");
 
 
 const app = express();
@@ -32,7 +32,7 @@ app.use("/fuelpayments", fuelpaymentRoutes);
 app.use("/evpayment", EVpayment);
 app.use('/api/bulkorders', bulkOrderRoutes);
 app.use("/appoinment", Appoinment);
-
+app.use("/feedbacks", FeedbackRoutes);
 app.use("/api/payments", paymentRoutes);
 app.use("/factory", factory);
 app.use("/Stocks", Stockrouter);
