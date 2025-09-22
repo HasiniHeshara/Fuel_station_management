@@ -27,6 +27,7 @@ import UpdateMember from './Components/UpdateMember/UpdateMember';
 
 import AddFuelMember from './Components/AddMember/AddMember';
 import DisplayFuelMember from './Components/MemberDisplay/MemberDisplay'; 
+import SingleMember from './Components/SingleMember/SingleMember';
 import MemberLogin from './Components/MemberLogin/MemberLogin';
 
 import PaymentPage from './Components/Payment/payment';
@@ -94,6 +95,7 @@ function App() {
           <Route path="/addmember" element={<AddFuelMember/>}/>
           <Route path="/displaymember" element={<DisplayFuelMember/>}/>
           <Route path="/memberlogin" element={<MemberLogin />} />
+            <Route path="/displaysinglemember/:id" element={<SingleMember />} />
            <Route path="/updatemember/:id" element={<UpdateMember />} />
 
 
