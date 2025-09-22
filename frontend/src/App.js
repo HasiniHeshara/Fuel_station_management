@@ -22,6 +22,7 @@ import Contact from './Components/Contact/Contact';
 import Admin from './Components/Admin/Admin';
 import UpdateEV from './Components/UpdateEV/UpdateEV';
 import UpdateFactory from './Components/UpdateFactory/UpdateFactory';
+import UpdateMember from './Components/UpdateMember/UpdateMember';
 
 
 import AddFuelMember from './Components/AddMember/AddMember';
@@ -93,6 +94,7 @@ function App() {
           <Route path="/addmember" element={<AddFuelMember/>}/>
           <Route path="/displaymember" element={<DisplayFuelMember/>}/>
           <Route path="/memberlogin" element={<MemberLogin />} />
+           <Route path="/updatemember/:id" element={<UpdateMember />} />
 
 
           <Route path="/payment/:id" element={<PaymentPage />} />
