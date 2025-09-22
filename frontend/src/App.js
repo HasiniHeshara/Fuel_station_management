@@ -29,6 +29,7 @@ import PaymentDetails from './Components/SinglePayment/SinglePayment';
 
 import AddStock from './Components/AddStock/AddStock';
 import DisplayStock from './Components/StockDisplay/StockDisplay';
+import AllFactories from './Components/DisplayFactory/DisplayFactory';
 
 import DisplayRecord from './Components/DisplayRecord/DisplayRecord';
 import BulkOrderForm from './Components/BulkOrderFrom/BulkOrderForm';
@@ -63,8 +64,8 @@ function App() {
                     <Route path="/flogin" element={<FactoryLogin />} />
                     <Route path="/fRegister" element={<FRegister />} />
                     <Route path="/factory/profile/:id" element={<FactoryProfile />} />
+                    <Route path="/factories" element={<AllFactories />} />
           
-                    <Route path="/addstock" element={<AddStock/>}/>
 
                     <Route path="/addstock" element={<AddStock/>}/>
                     <Route path="/displaystock/:id" element={<DisplayStock/>}/>
