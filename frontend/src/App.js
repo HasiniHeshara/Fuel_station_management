@@ -18,6 +18,10 @@ import FactoryProfile from './Components/FactoryProfile/FactoryProfile';
 import Contact from './Components/Contact/Contact';
 import Admin from './Components/Admin/Admin';
 
+import AddFuelMember from './Components/AddMember/AddMember';
+import DisplayFuelMember from './Components/MemberDisplay/MemberDisplay'; 
+import MemberLogin from './Components/MemberLogin/MemberLogin';
+
 import PaymentPage from './Components/Payment/payment';
 import DisplayPayment from './Components/DisplayPayment/DisplayPayment';
 import UpdatePayment from './Components/UpdatePayment/UpdatePayment';
@@ -25,6 +29,7 @@ import PaymentDetails from './Components/SinglePayment/SinglePayment';
 
 import AddStock from './Components/AddStock/AddStock';
 import DisplayStock from './Components/StockDisplay/StockDisplay';
+import AllFactories from './Components/DisplayFactory/DisplayFactory';
 
 import DisplayRecord from './Components/DisplayRecord/DisplayRecord';
 import BulkOrderForm from './Components/BulkOrderFrom/BulkOrderForm';
@@ -59,12 +64,12 @@ function App() {
                     <Route path="/flogin" element={<FactoryLogin />} />
                     <Route path="/fRegister" element={<FRegister />} />
                     <Route path="/factory/profile/:id" element={<FactoryProfile />} />
+                    <Route path="/factories" element={<AllFactories />} />
           
-                    <Route path="/addstock" element={<AddStock/>}/>
 
                     <Route path="/addstock" element={<AddStock/>}/>
                     <Route path="/displaystock/:id" element={<DisplayStock/>}/>
-          <Route path="/placeorder/:id" element={<BulkOrderForm />} />
+                    <Route path="/placeorder/:id" element={<BulkOrderForm />} />
 
                     <Route path="/sales" element={<DisplayRecord />} />
 
@@ -72,6 +77,10 @@ function App() {
           <Route path="/EVBookingPayment" element={<EVBookingPayment />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/admin" element={<Admin />} /> 
+
+          <Route path="/addmember" element={<AddFuelMember/>}/>
+          <Route path="/displaymember" element={<DisplayFuelMember/>}/>
+          <Route path="/memberlogin" element={<MemberLogin />} />
 
 
           <Route path="/payment/:id" element={<PaymentPage />} />

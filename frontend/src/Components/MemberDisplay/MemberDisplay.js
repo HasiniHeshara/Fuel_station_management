@@ -88,7 +88,7 @@ function MemberDisplay() {
       <nav className="payment-navbar">
         <div className="logo">👨‍🔧 Dasu Filling Station</div>
         <div className="nav-links">
-          <Link to="/memberlogin">Add Staff</Link>
+          <Link to="/addmember">Add Staff</Link>
           <Link to="/admin">Admin Page</Link>
           <Link to="/mainhome">Logout</Link>
         </div>
