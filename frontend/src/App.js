@@ -53,6 +53,13 @@ import FuelPricesPage from './Components/FuelPricePage/FuelPricesPage';
 import PrivacyPolicy from './Components/PrivacyPolicy/PrivacyPolicy';
 import TermsOfService from './Components/PrivacyPolicy/TermsOfService';
 
+
+
+import CustomerChat from './Components/MessageCustomer/CustomerChat';
+import AdminChat from './Components/MessageAdmin/AdminChat';
+import EnterPin from './Components/Pin/EnterPin';
+import CreatePin from './Components/Pin/CreatePin';
+
 function App() {
   return (
     <div>
@@ -116,6 +123,10 @@ function App() {
 
                     <Route path="/summary" element={<DailySummary />} />
 
+          <Route path="/customerchat/:pin" element={<CustomerChat/>} />
+          <Route path="/adminchat" element={<AdminChat/>} />
+          <Route path="/enterpin" element={<EnterPin/>} />
+          <Route path="/createpin" element={<CreatePin/>} />
 
 
           </Routes>
