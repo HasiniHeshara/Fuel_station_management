@@ -20,6 +20,7 @@ import FactoryProfile from './Components/FactoryProfile/FactoryProfile';
 import Contact from './Components/Contact/Contact';
 import Admin from './Components/Admin/Admin';
 import UpdateEV from './Components/UpdateEV/UpdateEV';
+import UpdateFactory from './Components/UpdateFactory/UpdateFactory';
 
 
 import AddFuelMember from './Components/AddMember/AddMember';
@@ -70,6 +71,7 @@ function App() {
                     <Route path="/fRegister" element={<FRegister />} />
                     <Route path="/factory/profile/:id" element={<FactoryProfile />} />
                     <Route path="/factories" element={<AllFactories />} />
+                    <Route path="/factory/update/:id" element={<UpdateFactory />} />
           
 
                     <Route path="/addstock" element={<AddStock/>}/>
