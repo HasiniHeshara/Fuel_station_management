@@ -37,6 +37,9 @@ import PaymentDetails from './Components/SinglePayment/SinglePayment';
 
 import AddStock from './Components/AddStock/AddStock';
 import DisplayStock from './Components/StockDisplay/StockDisplay';
+import UpdateStock from './Components/UpdateStock/UpdateStock';
+
+
 import AllFactories from './Components/DisplayFactory/DisplayFactory';
 
 import DisplayRecord from './Components/DisplayRecord/DisplayRecord';
@@ -86,6 +89,9 @@ function App() {
 
                     <Route path="/addstock" element={<AddStock/>}/>
                     <Route path="/displaystock/:id" element={<DisplayStock/>}/>
+                    <Route path="/updatestock/:id" element={<UpdateStock/>}/>
+
+
                     <Route path="/placeorder/:id" element={<BulkOrderForm />} />
 
                     <Route path="/sales" element={<DisplayRecord />} />
