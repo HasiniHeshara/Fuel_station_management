@@ -23,7 +23,7 @@ import Admin from './Components/Admin/Admin';
 import UpdateEV from './Components/UpdateEV/UpdateEV';
 import UpdateFactory from './Components/UpdateFactory/UpdateFactory';
 import UpdateMember from './Components/UpdateMember/UpdateMember';
-
+import EVRatingPage from './Components/EVRatingPage/EVRatingPage';
 
 import AddFuelMember from './Components/AddMember/AddMember';
 import DisplayFuelMember from './Components/MemberDisplay/MemberDisplay'; 
@@ -82,7 +82,7 @@ function App() {
                     <Route path="/factory/profile/:id" element={<FactoryProfile />} />
                     <Route path="/factories" element={<AllFactories />} />
                     <Route path="/factory/update/:id" element={<UpdateFactory />} />
-          
+           <Route path="/ev-rating" element={<EVRatingPage />} />
 
                     <Route path="/addstock" element={<AddStock/>}/>
                     <Route path="/displaystock/:id" element={<DisplayStock/>}/>
