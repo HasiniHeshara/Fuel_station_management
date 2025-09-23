@@ -43,6 +43,7 @@
 }
 
 .ev-list-logo {
+  margin-top: 30px;
   text-align: center;
   margin-top: 30px;
 }
@@ -74,7 +75,8 @@
 }
 
 .ev-list-table {
-  width: 100%;
+  margin-left: 13rem;
+  width: 100rem;
   border-collapse: collapse;
   font-size: 15px;
 }
@@ -89,6 +91,19 @@
 .ev-list-table th {
   background-color: #e3f2fd;
   color: #333;
+}
+
+.payment-search-bar {
+  padding: 8px;
+  margin-left: 13rem;
+  margin-bottom: 15px;
+  width: 100%;
+  max-width: 400px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.726);
+  transition: border-color 0.3s ease;
 }
 
 .total-row td {
@@ -121,11 +136,12 @@
 
 /*pdf button*/
 .download-pdf-btn {
-  background-color: #0e3e9c; /* green */
+  background-color: #0f5bf1; /* green */
   color: white;
   padding: 10px 22px;
   font-size: 16px;
   width: 500px;
+  margin-left: 13rem;
   border: none;
   border-radius: 6px;
   font-weight: 600;
