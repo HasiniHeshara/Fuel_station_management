@@ -83,7 +83,7 @@ function DisplayPayment() {
           </button>
           <div>
           <button className="d-fuel-download-pdf-btn" onClick={downloadPDF}>
-            📄 Download PDF
+            📄 Download Fuel Payment Report
           </button>
           </div>
         </div>

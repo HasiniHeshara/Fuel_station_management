@@ -62,19 +62,21 @@ function EVPaymentList() {
     return !isNaN(amount) ? total + amount : total;
   }, 0);
 
-  // Filter payments by search term (name or vehicle type)
+  // Search bar: letters only
   const handleSearch = (e) => {
-    const term = e.target.value.toLowerCase();
-    setSearchTerm(term);
+    // Allow only letters and spaces
+    const lettersOnly = e.target.value.replace(/[^a-zA-Z\s]/g, "");
+    setSearchTerm(lettersOnly);
 
-    if (!term) {
+    if (!lettersOnly) {
       setFilteredPayments(payments);
       return;
     }
 
-    const filtered = payments.filter((payment) =>
-      payment.name.toLowerCase().includes(term) ||
-      payment.vType.toLowerCase().includes(term)
+    const filtered = payments.filter(
+      (payment) =>
+        payment.name.toLowerCase().includes(lettersOnly.toLowerCase()) ||
+        payment.vType.toLowerCase().includes(lettersOnly.toLowerCase())
     );
     setFilteredPayments(filtered);
   };
@@ -144,75 +146,71 @@ function EVPaymentList() {
         <img src={logo} alt="Logo" />
       </div>
 
-      <div className="ev-list-content">
-        <h2>EV Income Records</h2>
+      <h2>EV Income Records</h2>
 
-        {/* Search Bar */}
-        <input
-          type="text"
-          placeholder="Search by Name or Vehicle Type"
-          value={searchTerm}
-          onChange={handleSearch}
-          className="payment-search-bar"
-          style={{ padding: "8px", marginBottom: "15px", width: "100%", maxWidth: "400px", fontSize: "16px" }}
-        />
+      {/* Search Bar */}
+      <input
+        type="text"
+        placeholder="Search by Name or Vehicle Type"
+        value={searchTerm}
+        onChange={handleSearch}
+        className="payment-search-bar"
+      />
 
-        {loading && <p>Loading payments...</p>}
-        {error && <p className="error-text">{error}</p>}
+      {loading && <p>Loading payments...</p>}
+      {error && <p className="error-text">{error}</p>}
 
-        {!loading && !error && filteredPayments.length === 0 && (
-          <p>No payment records found.</p>
-        )}
+      {!loading && !error && filteredPayments.length === 0 && (
+        <p>No payment records found.</p>
+      )}
 
-        {!loading && filteredPayments.length > 0 && (
-          <>
-            <div className="table-wrapper">
-              <table className="ev-list-table">
-                <thead>
-                  <tr>
-                    <th>Order No.</th>
-                    <th>Customer Name</th>
-                    <th>Card</th>
-                    <th>Vehicle Type</th>
-                    <th>Amount</th>
-                    <th>Expiry</th>
-                    {/*<th>CVV</th>*/}
-                    <th>Action</th>
+      {!loading && filteredPayments.length > 0 && (
+        <>
+          <div className="table-wrapper">
+            <table className="ev-list-table">
+              <thead>
+                <tr>
+                  <th>Order No.</th>
+                  <th>Customer Name</th>
+                  <th>Card</th>
+                  <th>Vehicle Type</th>
+                  <th>Amount</th>
+                  <th>Expiry</th>
+                  {/*<th>CVV</th>*/}
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                {filteredPayments.map((payment, index) => (
+                  <tr key={payment._id}>
+                    <td>{index + 1}</td>
+                    <td>{payment.name}</td>
+                    <td>{'.'.repeat(payment.card.length)}</td>
+                    <td>{payment.vType}</td>
+                    <td>Rs. {payment.amount}</td>
+                    <td>{'.'.repeat(payment.expdate.length)}</td>
+                    {/*<td>{'.'.repeat(payment.cvv.length)}</td>*/}
+                    <td>
+                      <button
+                        className="delete-btn"
+                        onClick={() => handleDelete(payment._id)}
+                        disabled={deletingId === payment._id}
+                      >
+                        {deletingId === payment._id ? "Deleting..." : "Delete"}
+                      </button>
+                    </td>
                   </tr>
-                </thead>
-                <tbody>
-                  {filteredPayments.map((payment, index) => (
-                    <tr key={payment._id}>
-                      <td>{index + 1}</td>
-                      <td>{payment.name}</td>
-                      <td>{'.'.repeat(payment.card.length)}</td>
-                      <td>{payment.vType}</td>
-                      <td>Rs. {payment.amount}</td>
-                      <td>{'.'.repeat(payment.expdate.length)}</td>
-                      {/*<td>{'.'.repeat(payment.cvv.length)}</td>*/}
-                      <td>
-                        <button
-                          className="delete-btn"
-                          onClick={() => handleDelete(payment._id)}
-                          disabled={deletingId === payment._id}
-                        >
-                          {deletingId === payment._id ? "Deleting..." : "Delete"}
-                        </button>
-                      </td>
-                    </tr>
-                  ))}
-                  <tr className="total-row">
-                    <td colSpan="4"><strong>Total</strong></td>
-                    <td colSpan="4"><strong>Rs. {totalAmount}</strong></td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-           <button className="download-pdf-btn" onClick={downloadPDF}>Download PDF Report</button>
-
-          </>
-        )}
-      </div>
+                ))}
+                <tr className="total-row">
+                  <td colSpan="4"><strong>Total</strong></td>
+                  <td colSpan="4"><strong>Rs. {totalAmount}</strong></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <button className="download-pdf-btn" onClick={downloadPDF}>Download EV Income Report</button>
+        </>
+      )}
     </div>
   );
 }
