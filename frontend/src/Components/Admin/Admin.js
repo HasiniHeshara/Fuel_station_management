@@ -11,7 +11,7 @@ function Admin() {
     const handleSendReport = () => {
 
     //crete whatsapp chat url
-    const phoneNumber = "+94766773745";
+    const phoneNumber = "+";
     const message = `Hello what you want to know`
     const WhatsAppUrl = `http://web.whatsapp.com/send?phones=${phoneNumber}&text=${encodeURIComponent(
       message
