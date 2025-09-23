@@ -48,8 +48,17 @@ function EVBookingPayment() {
     document.body.appendChild(script);
   }, []);
 
-  const handleChange = (e) =>
-    setForm({ ...form, [e.target.name]: e.target.value });
+  // 🔹 General form input change
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+
+    if (name === "name") {
+      const lettersOnly = value.replace(/[^a-zA-Z\s]/g, "");
+      setForm({ ...form, [name]: lettersOnly });
+    } else {
+      setForm({ ...form, [name]: value });
+    }
+  };
 
   // 🔹 Card, Expiry & CVV validation handler
   const handleCardInput = (e) => {
@@ -88,11 +97,12 @@ function EVBookingPayment() {
     }
   };
 
-  // 🔹 Expiry date validation (must be future date)
+  // 🔹 Expiry date validation: must be valid MM/YY and not in the past
   const validateExpiry = (exp) => {
     if (!/^\d{2}\/\d{2}$/.test(exp)) return false;
     const [mm, yy] = exp.split("/").map(Number);
-    if (mm < 1 || mm > 12) return false;
+
+    if (mm < 1 || mm > 12) return false; // invalid month
 
     const now = new Date();
     const currentYear = now.getFullYear() % 100;
@@ -100,6 +110,9 @@ function EVBookingPayment() {
 
     if (yy < currentYear) return false;
     if (yy === currentYear && mm < currentMonth) return false;
+
+    // Limit expiry to a realistic future year (e.g., max 10 years ahead)
+    if (yy > currentYear + 10) return false;
 
     return true;
   };
@@ -113,7 +126,9 @@ function EVBookingPayment() {
       return;
     }
     if (!validateExpiry(form.expdate)) {
-      setMessage("Expiry date must be valid and in the future (MM/YY).");
+      setMessage(
+        "Expiry date must be valid MM/YY and not in the past (e.g., 08/25)."
+      );
       return;
     }
     if (!/^\d{3}$/.test(form.cvv)) {
