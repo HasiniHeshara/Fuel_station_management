@@ -43,7 +43,7 @@ import RecordSale from './Components/RecordSale/RecordSale';
 import AllFactories from './Components/DisplayFactory/DisplayFactory';
 
 import DisplayRecord from './Components/DisplayRecord/DisplayRecord';
-import BulkOrderForm from './Components/BulkOrderFrom/BulkOrderForm';
+import BulkOrderForm from './Components/BulkOrderForm/BulkOrderForm';
 import DailySummary from './Components/FuelIncomeSummary/DailyIncomeSummary';
 import BulkPaymentList from './Components/BulkPaymentList/BulkPaymentList';
 
@@ -95,8 +95,8 @@ function App() {
 
                     <Route path="/recordsale" element={<RecordSale />} />
 
+          <Route path="/placeorder/:id" element={<BulkOrderForm />} />
 
-                    <Route path="/placeorder/:id" element={<BulkOrderForm />} />
 
                     <Route path="/sales" element={<DisplayRecord />} />
 
