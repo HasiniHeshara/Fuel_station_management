@@ -24,7 +24,7 @@ const loginEV = async (req, res) => {
     if (ev.password === password) {
       return res.json({ status: "ok", data: ev });
     } else {
-      return res.json({ status: "error", message: "Incorrect password" });
+      return res.json({ status: "error", message: "Incorrect username or password" });
     }
   } catch (err) {
     console.error("Login error:", err);
