@@ -131,7 +131,7 @@ useEffect(() => {
           className="pay-btn"
           onClick={() => {
           console.log("Navigating to payment page with order id:", confirmedOrder._id);
-          navigate(`/income/${confirmedOrder._id}`, {
+          navigate(`/bulkpayment/${confirmedOrder._id}`, {
           state: {
             fuelType: confirmedOrder.fuelType,
             quantity: confirmedOrder.quantity
