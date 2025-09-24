@@ -55,6 +55,7 @@ import ServicesPage from './Components/ServicePage/ServicesPage';
 import FuelPricesPage from './Components/FuelPricePage/FuelPricesPage';
 import PrivacyPolicy from './Components/PrivacyPolicy/PrivacyPolicy';
 import TermsOfService from './Components/PrivacyPolicy/TermsOfService';
+import BulkPaymentInsert from './Components/BulkPaymentInsert/BulkPaymentInsert';
 
 
 
@@ -96,6 +97,7 @@ function App() {
 
                     <Route path="/sales" element={<DisplayRecord />} />
 
+          <Route path="/bulkpayment/:orderId" element={<BulkPaymentInsert />} />
 
           <Route path="/EVBookingPayment" element={<EVBookingPayment />} />
 
