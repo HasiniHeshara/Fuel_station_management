@@ -4,13 +4,13 @@ import axios from 'axios';
 import logo from '../../assets/f2.png';
 import './UpdateEV.css';
 
-
 function UpdateEV() {
   const { id } = useParams();
   const navigate = useNavigate();
   const [ev, setEV] = useState({
     name: '',
     gmail: '',
+    password: '',
     vtype: '',
     address: '',
     contact: ''
@@ -18,6 +18,7 @@ function UpdateEV() {
 
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [errors, setErrors] = useState({});
 
   useEffect(() => {
     const fetchEV = async () => {
@@ -41,11 +42,47 @@ function UpdateEV() {
   }, [id]);
 
   const handleChange = (e) => {
-    setEV({ ...ev, [e.target.name]: e.target.value });
+    setEV({ ...ev, [e.target.name]: e.target.value.trimStart() });
+  };
+
+  const validate = () => {
+    let newErrors = {};
+
+    // Name: only letters and spaces
+    if (!ev.name.trim()) {
+      newErrors.name = "Full name is required";
+    } else if (!/^[A-Za-z\s]+$/.test(ev.name)) {
+      newErrors.name = "Name cannot contain numbers or symbols";
+    }
+
+    // Email: must end with @gmail.com
+    if (!ev.gmail.trim()) {
+      newErrors.gmail = "Email is required";
+    } else if (!/^[a-zA-Z0-9._%+-]+@gmail\.com$/.test(ev.gmail)) {
+      newErrors.gmail = "Email must be in format example@gmail.com";
+    }
+
+    // Password: at least 4 characters
+    if (!ev.password) {
+      newErrors.password = "Password is required";
+    } else if (ev.password.length < 4) {
+      newErrors.password = "Password must be at least 4 characters";
+    }
+
+    // Contact: 10–15 digits
+    if (!ev.contact.trim()) {
+      newErrors.contact = "Contact number is required";
+    } else if (!/^[0-9]{10,15}$/.test(ev.contact)) {
+      newErrors.contact = "Contact number must be 10 to 15 digits";
+    }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!validate()) return; // stop if validation fails
 
     try {
       const res = await axios.put(`http://localhost:5000/ev/updateEV/${id}`, ev);
@@ -77,8 +114,8 @@ function UpdateEV() {
               name="name"
               value={ev.name}
               onChange={handleChange}
-              required
             />
+            {errors.name && <p className="error">{errors.name}</p>}
           </div>
 
           <div>
@@ -88,8 +125,19 @@ function UpdateEV() {
               name="gmail"
               value={ev.gmail}
               onChange={handleChange}
-              required
             />
+            {errors.gmail && <p className="error">{errors.gmail}</p>}
+          </div>
+
+          <div>
+            <label>Password:</label>
+            <input
+              type="password"
+              name="password"
+              value={ev.password}
+              onChange={handleChange}
+            />
+            {errors.password && <p className="error">{errors.password}</p>}
           </div>
 
           <div>
@@ -101,9 +149,9 @@ function UpdateEV() {
               required
             >
               <option value="">Select Type</option>
-              <option value="car">Car</option>
-              <option value="bike">Bike</option>
-              <option value="other">Other</option>
+              <option value="Car">Car</option>
+              <option value="Bike">Bike</option>
+              <option value="Other">Other</option>
             </select>
           </div>
 
@@ -125,8 +173,8 @@ function UpdateEV() {
               name="contact"
               value={ev.contact}
               onChange={handleChange}
-              required
             />
+            {errors.contact && <p className="error">{errors.contact}</p>}
           </div>
 
           <button type="submit">Update</button>
