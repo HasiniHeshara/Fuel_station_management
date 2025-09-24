@@ -23,7 +23,7 @@ import Admin from './Components/Admin/Admin';
 import UpdateEV from './Components/UpdateEV/UpdateEV';
 import UpdateFactory from './Components/UpdateFactory/UpdateFactory';
 import UpdateMember from './Components/UpdateMember/UpdateMember';
-
+import EVRatingPage from './Components/EVRatingPage/EVRatingPage';
 
 import AddFuelMember from './Components/AddMember/AddMember';
 import DisplayFuelMember from './Components/MemberDisplay/MemberDisplay'; 
@@ -37,6 +37,9 @@ import PaymentDetails from './Components/SinglePayment/SinglePayment';
 
 import AddStock from './Components/AddStock/AddStock';
 import DisplayStock from './Components/StockDisplay/StockDisplay';
+import UpdateStock from './Components/UpdateStock/UpdateStock';
+
+
 import AllFactories from './Components/DisplayFactory/DisplayFactory';
 
 import DisplayRecord from './Components/DisplayRecord/DisplayRecord';
@@ -82,10 +85,13 @@ function App() {
                     <Route path="/factory/profile/:id" element={<FactoryProfile />} />
                     <Route path="/factories" element={<AllFactories />} />
                     <Route path="/factory/update/:id" element={<UpdateFactory />} />
-          
+           <Route path="/ev-rating" element={<EVRatingPage />} />
 
                     <Route path="/addstock" element={<AddStock/>}/>
                     <Route path="/displaystock/:id" element={<DisplayStock/>}/>
+                    <Route path="/updatestock/:id" element={<UpdateStock/>}/>
+
+
                     <Route path="/placeorder/:id" element={<BulkOrderForm />} />
 
                     <Route path="/sales" element={<DisplayRecord />} />
