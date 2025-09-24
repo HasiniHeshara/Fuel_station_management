@@ -24,7 +24,7 @@ const loginFactory = async (req, res) => {
     if (factory.password === password) {
       return res.json({ status: "ok", data: factory });
     } else {
-      return res.json({ status: "error", message: "Incorrect password" });
+      return res.json({ status: "error", message: "Incorrect username or password" });
     }
   } catch (err) {
     console.error("Login error:", err);
