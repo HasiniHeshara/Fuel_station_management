@@ -10,6 +10,7 @@ function UpdateFactory() {
   const [factory, setFactory] = useState({
     name: '',
     gmail: '',
+    password: '',
     company: '',
     address: '',
     contact: ''
@@ -17,6 +18,7 @@ function UpdateFactory() {
 
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [errors, setErrors] = useState({});
 
   useEffect(() => {
     const fetchFactory = async () => {
@@ -40,11 +42,47 @@ function UpdateFactory() {
   }, [id]);
 
   const handleChange = (e) => {
-    setFactory({ ...factory, [e.target.name]: e.target.value });
+    setFactory({ ...factory, [e.target.name]: e.target.value.trimStart() });
+  };
+
+  const validate = () => {
+    let newErrors = {};
+
+    // Owner Name
+    if (!factory.name.trim()) {
+      newErrors.name = "Owner name is required";
+    } else if (!/^[A-Za-z\s]+$/.test(factory.name)) {
+      newErrors.name = "Name cannot contain numbers or symbols";
+    }
+
+    // Email
+    if (!factory.gmail.trim()) {
+      newErrors.gmail = "Email is required";
+    } else if (!/^[a-zA-Z0-9._%+-]+@gmail\.com$/.test(factory.gmail)) {
+      newErrors.gmail = "Email must be in format example@gmail.com";
+    }
+
+    // Password
+    if (!factory.password) {
+      newErrors.password = "Password is required";
+    } else if (factory.password.length < 4) {
+      newErrors.password = "Password must be at least 4 characters";
+    }
+
+    // Contact
+    if (!factory.contact.trim()) {
+      newErrors.contact = "Contact number is required";
+    } else if (!/^[0-9]{10,15}$/.test(factory.contact)) {
+      newErrors.contact = "Contact number must be 10 to 15 digits";
+    }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!validate()) return;
 
     try {
       const res = await axios.put(`http://localhost:5000/factory/updateFactory/${id}`, factory);
@@ -76,8 +114,8 @@ function UpdateFactory() {
               name="name"
               value={factory.name}
               onChange={handleChange}
-              required
             />
+            {errors.name && <p className="error">{errors.name}</p>}
           </div>
 
           <div>
@@ -87,8 +125,19 @@ function UpdateFactory() {
               name="gmail"
               value={factory.gmail}
               onChange={handleChange}
-              required
             />
+            {errors.gmail && <p className="error">{errors.gmail}</p>}
+          </div>
+
+          <div>
+            <label>Password:</label>
+            <input
+              type="password"
+              name="password"
+              value={factory.password}
+              onChange={handleChange}
+            />
+            {errors.password && <p className="error">{errors.password}</p>}
           </div>
 
           <div>
@@ -120,8 +169,8 @@ function UpdateFactory() {
               name="contact"
               value={factory.contact}
               onChange={handleChange}
-              required
             />
+            {errors.contact && <p className="error">{errors.contact}</p>}
           </div>
 
           <button type="submit">Update</button>
