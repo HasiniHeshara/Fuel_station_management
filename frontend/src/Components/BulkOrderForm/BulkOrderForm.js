@@ -14,6 +14,13 @@ function PlaceOrder() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // Validate that date is selected
+    if (!preferredDate) {
+      alert("Please select an ordering date.");
+      return;
+    }
+
     try {
       const res = await axios.post(`http://localhost:5000/api/bulkorders/create/${id}`, {
         fuelType,
@@ -48,35 +55,36 @@ function PlaceOrder() {
         <img src={logo} alt="Company Logo" className="border-logo" />
       </div>
       <div>
-      <form className="border-placeorder-form" onSubmit={handleSubmit}>
-        <label>Fuel Type:</label>
-        <select value={fuelType} onChange={e => setFuelType(e.target.value)} required>
-          <option value="">Select fuel type</option>
-          <option value="Petrol 95">Petrol 95</option>
-          <option value="Petrol 92">Petrol 92</option>
-          <option value="Diesel">Diesel</option>
-          <option value="Kerosene">Kerosene</option>
-          <option value="Auto Diesel">Auto Diesel</option>
-        </select>
+        <form className="border-placeorder-form" onSubmit={handleSubmit}>
+          <label>Fuel Type:</label>
+          <select value={fuelType} onChange={e => setFuelType(e.target.value)} required>
+            <option value="">Select fuel type</option>
+            <option value="Petrol 95">Petrol 95</option>
+            <option value="Petrol 92">Petrol 92</option>
+            <option value="Diesel">Diesel</option>
+            <option value="Kerosene">Kerosene</option>
+            <option value="Auto Diesel">Auto Diesel</option>
+          </select>
 
-        <label>Quantity (Liters):</label>
-        <input
-          type="number"
-          min="1"
-          value={quantity}
-          onChange={e => setQuantity(e.target.value)}
-          required
-        />
+          <label>Quantity (Liters):</label>
+          <input
+            type="number"
+            min="1"
+            value={quantity}
+            onChange={e => setQuantity(e.target.value)}
+            required
+          />
 
-        <label>Preferred Delivery Date:</label>
-        <input
-          type="date"
-          value={preferredDate}
-          onChange={e => setPreferredDate(e.target.value)}
-        />
+          <label>Ordering Date:</label>
+          <input
+            type="date"
+            value={preferredDate}
+            onChange={e => setPreferredDate(e.target.value)}
+            required
+          />
 
-        <button type="submit" className="border-submit-btn">Submit Order</button>
-      </form>
+          <button type="submit" className="border-submit-btn">Submit Order</button>
+        </form>
       </div>
     </div>
   );
