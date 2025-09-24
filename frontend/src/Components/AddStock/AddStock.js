@@ -20,8 +20,49 @@ function AddStock() {
     }));
   };
 
+  // Validation function
+  const validateStock = () => {
+    const { date, type, quantity, supplier } = stocks;
+
+    // Date validation
+    if (!date) {
+      alert("Please select a date.");
+      return false;
+    }
+    const selectedDate = new Date(date);
+    const today = new Date();
+    today.setHours(0, 0, 0, 0); // Ignore time
+    if (selectedDate > today) {
+      alert("Date cannot be in the future.");
+      return false;
+    }
+
+    // Fuel type validation
+    if (!type) {
+      alert("Please select a fuel type.");
+      return false;
+    }
+
+    // Quantity validation
+    if (!quantity || isNaN(quantity) || Number(quantity) <= 0) {
+      alert("Please enter a valid quantity greater than 0.");
+      return false;
+    }
+
+    // Supplier validation
+    if (!supplier) {
+      alert("Please select a supplier.");
+      return false;
+    }
+
+    return true;
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+     if (!validateStock()) return;
+
     try {
       const res = await axios.post("http://localhost:5000/stocks", stocks);
       const stockId = res.data.stock._id;
