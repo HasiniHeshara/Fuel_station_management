@@ -15,6 +15,8 @@ function FactoryRegister() {
     contact: "",
   });
 
+  const [errors, setErrors] = useState({});
+
   const handleChange = (e) => {
     setInputs(prev => ({
       ...prev,
@@ -22,8 +24,45 @@ function FactoryRegister() {
     }));
   };
 
+  const validate = () => {
+    let newErrors = {};
+
+    // Name validation: only letters + spaces
+    if (!inputs.name.trim()) {
+      newErrors.name = "Name is required";
+    } else if (!/^[A-Za-z\s]+$/.test(inputs.name)) {
+      newErrors.name = "Name cannot contain numbers or symbols";
+    }
+
+    // Email validation: must end with @gmail.com
+    if (!inputs.gmail.trim()) {
+      newErrors.gmail = "Email is required";
+    } else if (!/^[a-zA-Z0-9._%+-]+@gmail\.com$/.test(inputs.gmail)) {
+      newErrors.gmail = "Email must be in format example@gmail.com";
+    }
+
+    // Password validation: at least 4 characters
+    if (!inputs.password) {
+      newErrors.password = "Password is required";
+    } else if (inputs.password.length < 4) {
+      newErrors.password = "Password must be at least 4 characters";
+    }
+
+    // Contact validation: 10–15 digits
+    if (!inputs.contact.trim()) {
+      newErrors.contact = "Contact number is required";
+    } else if (!/^[0-9]{10,15}$/.test(inputs.contact)) {
+      newErrors.contact = "Contact number must be 10 to 15 digits";
+    }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0; // valid if no errors
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!validate()) return; // stop if validation fails
+
     try {
       const res = await axios.post("http://localhost:5000/factory/register", inputs);
       if (res.data.status === 'ok') {
@@ -64,9 +103,9 @@ function FactoryRegister() {
               name="name"
               onChange={handleChange}
               value={inputs.name}
-              required
               autoComplete="off"
             />
+            {errors.name && <p className="error">{errors.name}</p>}
           </div>
 
           <div className="form-group">
@@ -77,9 +116,9 @@ function FactoryRegister() {
               name="gmail"
               onChange={handleChange}
               value={inputs.gmail}
-              required
               autoComplete="off"
             />
+            {errors.gmail && <p className="error">{errors.gmail}</p>}
           </div>
 
           <div className="form-group">
@@ -90,8 +129,8 @@ function FactoryRegister() {
               name="password"
               onChange={handleChange}
               value={inputs.password}
-              required
             />
+            {errors.password && <p className="error">{errors.password}</p>}
           </div>
 
           <div className="form-group">
@@ -102,8 +141,8 @@ function FactoryRegister() {
               name="company"
               onChange={handleChange}
               value={inputs.company}
-              required
               autoComplete="off"
+              required
             />
           </div>
 
@@ -115,8 +154,8 @@ function FactoryRegister() {
               name="address"
               onChange={handleChange}
               value={inputs.address}
-              required
               autoComplete="off"
+              required
             />
           </div>
 
@@ -128,10 +167,9 @@ function FactoryRegister() {
               name="contact"
               onChange={handleChange}
               value={inputs.contact}
-              required
-              pattern="[0-9]{10,15}"
-              title="Contact number must be 10 to 15 digits"
+              autoComplete="off"
             />
+            {errors.contact && <p className="error">{errors.contact}</p>}
           </div>
 
           <button type="submit" className="submit-btn">Enter To Register</button>
