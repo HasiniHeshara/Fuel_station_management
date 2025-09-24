@@ -24,7 +24,7 @@ import UpdateEV from './Components/UpdateEV/UpdateEV';
 import UpdateFactory from './Components/UpdateFactory/UpdateFactory';
 import UpdateMember from './Components/UpdateMember/UpdateMember';
 import EVRatingPage from './Components/EVRatingPage/EVRatingPage';
-
+import EVRatingList from './Components/EVRatingList/EVRatingList';
 import AddFuelMember from './Components/AddMember/AddMember';
 import DisplayFuelMember from './Components/MemberDisplay/MemberDisplay'; 
 import SingleMember from './Components/SingleMember/SingleMember';
@@ -86,7 +86,7 @@ function App() {
                     <Route path="/factories" element={<AllFactories />} />
                     <Route path="/factory/update/:id" element={<UpdateFactory />} />
            <Route path="/ev-rating" element={<EVRatingPage />} />
-
+ <Route path="/ratingdisplay" element={<EVRatingList />} />
                     <Route path="/addstock" element={<AddStock/>}/>
                     <Route path="/displaystock/:id" element={<DisplayStock/>}/>
                     <Route path="/updatestock/:id" element={<UpdateStock/>}/>
