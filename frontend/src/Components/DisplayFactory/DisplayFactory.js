@@ -113,8 +113,8 @@ function AllFactories() {
                   <td>{factory.address}</td>
                   <td>{factory.contact}</td>
                   <td>
-                    <button className="factory-action-btn view-btn" onClick={() => navigate(`/factory/profile/${factory._id}`)}>View</button>
-                    <button className="factory-action-btn update-btn" onClick={() => navigate(`/factory/update/${factory._id}`)}>Update</button>
+                  {/*  <button className="factory-action-btn view-btn" onClick={() => navigate(`/factory/profile/${factory._id}`)}>View</button>
+                    <button className="factory-action-btn update-btn" onClick={() => navigate(`/factory/update/${factory._id}`)}>Update</button>*/}
                     <button className="factory-action-btn delete-btn" onClick={() => handleDelete(factory._id)}>Delete</button>
                   </td>
                 </tr>
