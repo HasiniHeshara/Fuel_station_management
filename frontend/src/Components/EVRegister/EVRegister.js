@@ -14,14 +14,52 @@ function EVRegister() {
     contact: '',
   });
 
+  const [errors, setErrors] = useState({});
   const navigate = useNavigate();
 
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    setFormData({ ...formData, [e.target.name]: e.target.value.trimStart() });
+  };
+
+  const validate = () => {
+    let newErrors = {};
+
+    // Name: only letters and spaces
+    if (!formData.name.trim()) {
+      newErrors.name = "Full name is required";
+    } else if (!/^[A-Za-z\s]+$/.test(formData.name)) {
+      newErrors.name = "Name cannot contain numbers or symbols";
+    }
+
+    // Email: must end with @gmail.com
+    if (!formData.gmail.trim()) {
+      newErrors.gmail = "Email is required";
+    } else if (!/^[a-zA-Z0-9._%+-]+@gmail\.com$/.test(formData.gmail)) {
+      newErrors.gmail = "Email must be in format example@gmail.com";
+    }
+
+    // Password: at least 4 characters
+    if (!formData.password) {
+      newErrors.password = "Password is required";
+    } else if (formData.password.length < 4) {
+      newErrors.password = "Password must be at least 4 characters";
+    }
+
+    // Contact: must be 10–15 digits
+    if (!formData.contact.trim()) {
+      newErrors.contact = "Contact number is required";
+    } else if (!/^[0-9]{10,15}$/.test(formData.contact)) {
+      newErrors.contact = "Contact number must be 10 to 15 digits";
+    }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!validate()) return; // stop if validation fails
+
     try {
       const res = await axios.post('http://localhost:5000/ev/evregister', formData);
       alert(res.data.message);
@@ -59,8 +97,8 @@ function EVRegister() {
               name="name"
               value={formData.name}
               onChange={handleChange}
-              required
             />
+            {errors.name && <p className="error">{errors.name}</p>}
           </div>
 
           <div className="form-group">
@@ -70,8 +108,8 @@ function EVRegister() {
               name="gmail"
               value={formData.gmail}
               onChange={handleChange}
-              required
             />
+            {errors.gmail && <p className="error">{errors.gmail}</p>}
           </div>
 
           <div className="form-group">
@@ -81,8 +119,8 @@ function EVRegister() {
               name="password"
               value={formData.password}
               onChange={handleChange}
-              required
             />
+            {errors.password && <p className="error">{errors.password}</p>}
           </div>
 
           <div className="form-group">
@@ -91,7 +129,6 @@ function EVRegister() {
               name="vtype"
               value={formData.vtype}
               onChange={handleChange}
-              required
             >
               <option value="Car">Car</option>
               <option value="Bike">Bike</option>
@@ -117,12 +154,11 @@ function EVRegister() {
               name="contact"
               value={formData.contact}
               onChange={handleChange}
-              required
             />
+            {errors.contact && <p className="error">{errors.contact}</p>}
           </div>
 
           <button type="submit" className="ev-submit-btn">Register</button>
-
         </form>
       </div>
     </div>
