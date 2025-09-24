@@ -65,7 +65,7 @@ function AddStock() {
 
     try {
       const res = await axios.post("http://localhost:5000/stocks", stocks);
-      const stockId = res.data.stock._id;
+      const stockId = res.data?.stock?._id;
       if (!stockId) throw new Error("No stock ID returned");
       alert("Stock added successfully");
       navigate(`/displaystock/${stockId}`);
