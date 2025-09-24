@@ -129,7 +129,7 @@ function AllAppointments() {
                   <td>{item.date}</td>
                   <td>{item.slot}</td>
                   <td>
-                    <button onClick={() => navigate(`/appoinment/profile/${item._id}`)}>View</button>
+                    {/*<button onClick={() => navigate(`/appoinment/profile/${item._id}`)}>View</button>*/}
                     {/*<button onClick={() => navigate(`/appoinment/update/${item._id}`)}>Edit</button> */}
                     <button onClick={() => handleDelete(item._id)} className="delete-btn">Delete</button>
                   </td>

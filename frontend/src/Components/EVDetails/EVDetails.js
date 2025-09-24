@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import {  Link } from 'react-router-dom';
 import axios from 'axios';
 import './EVDetails.css'; // Unique styling
 import logo from '../../assets/f2.png';
@@ -10,7 +10,7 @@ function EVDetails() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [searchTerm, setSearchTerm] = useState('');
-  const navigate = useNavigate();
+ // const navigate = useNavigate();
 
   useEffect(() => {
     const fetchEVs = async () => {
@@ -84,7 +84,7 @@ function EVDetails() {
                 <th>EV Type</th>
                 <th>Address</th>
                 <th>Contact</th>
-                <th>Actions</th>
+                {/*<th>Actions</th>*/}
               </tr>
             </thead>
             <tbody>
@@ -95,14 +95,14 @@ function EVDetails() {
                   <td>{ev.vtype}</td>
                   <td>{ev.address}</td>
                   <td>{ev.contact}</td>
-                  <td>
+                 {/* <td>
                     <button
                       className="ev-view-btn"
                       onClick={() => navigate(`/ev/profile/${ev._id}`)}
                     >
                       View
                     </button>
-                  </td>
+                  </td>*/}
                 </tr>
               ))}
             </tbody>
