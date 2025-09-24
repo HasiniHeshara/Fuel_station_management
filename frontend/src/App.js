@@ -38,7 +38,7 @@ import PaymentDetails from './Components/SinglePayment/SinglePayment';
 import AddStock from './Components/AddStock/AddStock';
 import DisplayStock from './Components/StockDisplay/StockDisplay';
 import UpdateStock from './Components/UpdateStock/UpdateStock';
-
+import RecordSale from './Components/RecordSale/RecordSale';
 
 import AllFactories from './Components/DisplayFactory/DisplayFactory';
 
@@ -55,6 +55,7 @@ import ServicesPage from './Components/ServicePage/ServicesPage';
 import FuelPricesPage from './Components/FuelPricePage/FuelPricesPage';
 import PrivacyPolicy from './Components/PrivacyPolicy/PrivacyPolicy';
 import TermsOfService from './Components/PrivacyPolicy/TermsOfService';
+import BulkPaymentInsert from './Components/BulkPaymentInsert/BulkPaymentInsert';
 
 
 
@@ -92,10 +93,14 @@ function App() {
                     <Route path="/updatestock/:id" element={<UpdateStock/>}/>
 
 
+                    <Route path="/recordsale" element={<RecordSale />} />
+
+
                     <Route path="/placeorder/:id" element={<BulkOrderForm />} />
 
                     <Route path="/sales" element={<DisplayRecord />} />
 
+          <Route path="/bulkpayment/:orderId" element={<BulkPaymentInsert />} />
 
           <Route path="/EVBookingPayment" element={<EVBookingPayment />} />
 
