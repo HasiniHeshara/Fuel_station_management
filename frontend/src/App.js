@@ -6,6 +6,8 @@ import Home from './Components/Home/home';
 import FuelLevels from './Components/FuelLevel/FuelLevel';
 
 import EVBookingPayment from './Components/EVPaymentForm/EVBookingPayment';
+import AllAppointments from './Components/AllAppointments/AllAppointments';
+
 import AdminBulkOrders from './Components/AdminBulkOrders/AdminBulkOrders';
 
 import VehicleDetailsPage from './Components/EVPaymentForm/EVPaymentList';
@@ -98,6 +100,8 @@ function App() {
 
 
           <Route path="/EVBookingPayment" element={<EVBookingPayment />} />
+          <Route path="/appoinment/all" element={<AllAppointments />} />
+
 
           <Route path="/allEV" element={<EVDetail />} />
 
