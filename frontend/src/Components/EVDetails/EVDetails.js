@@ -84,7 +84,7 @@ function EVDetails() {
                 <th>EV Type</th>
                 <th>Address</th>
                 <th>Contact</th>
-                <th>Actions</th>
+                {/*<th>Actions</th>*/}
               </tr>
             </thead>
             <tbody>
@@ -95,14 +95,14 @@ function EVDetails() {
                   <td>{ev.vtype}</td>
                   <td>{ev.address}</td>
                   <td>{ev.contact}</td>
-                  <td>
+                 {/* <td>
                     <button
                       className="ev-view-btn"
                       onClick={() => navigate(`/ev/profile/${ev._id}`)}
                     >
                       View
                     </button>
-                  </td>
+                  </td>*/}
                 </tr>
               ))}
             </tbody>
