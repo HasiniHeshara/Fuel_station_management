@@ -303,6 +303,7 @@ function EVBookingPayment() {
               <option value="Car">Car - Rs. 1000</option>
               <option value="Bike">Bike - Rs. 500</option>
               <option value="Other">Other - Rs. 700</option>
+              
             </select>
 
             <input

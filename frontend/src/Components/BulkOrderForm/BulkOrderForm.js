@@ -80,6 +80,7 @@ function PlaceOrder() {
             type="date"
             value={preferredDate}
             onChange={e => setPreferredDate(e.target.value)}
+             min={new Date().toISOString().split("T")[0]}
             required
           />
 
