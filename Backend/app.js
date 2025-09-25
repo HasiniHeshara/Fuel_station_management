@@ -1,7 +1,6 @@
-<<<<<<< Updated upstream
-=======
+
 //Rdzcg8rktmk0x5q8
->>>>>>> Stashed changes
+
 
 const express = require("express");
 const mongoose = require("mongoose");
@@ -41,7 +40,6 @@ app.use('/fuelprices', fuelPriceRoutes);
 app.use("/fuelpayments", fuelpaymentRoutes);
 app.use("/factory", factory);
 app.use("/ev", ev);
-<<<<<<< Updated upstream
 app.use("/appoinment", Appoinment);
 app.use("/evpayment", EVpayment);
 app.use("/evcombined", combinedRoutes);
@@ -90,11 +88,8 @@ app.post('/getPayhereHash', (req, res) => {
   res.json({ hash });
 });
 
-=======
 
-const mongoose = require("mongoose");
 
-mongoose.connect("mongodb+srv://admin:Rdzcg8rktmk0x5q8@cluster0.ykdbywy.mongodb.net/")
-  .then(() => console.log("Connected to MongoDB"))
-  .catch((err) => console.log("MongoDB connection error:", err));
->>>>>>> Stashed changes
+
+
+
