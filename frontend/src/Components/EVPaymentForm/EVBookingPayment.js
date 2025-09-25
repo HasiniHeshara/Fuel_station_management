@@ -82,7 +82,6 @@ function EVBookingPayment() {
       setForm({ ...form, cvv: digits });
     }
   };
-
   
   const handleDateChange = async (e) => {
     const selectedDate = e.target.value;
