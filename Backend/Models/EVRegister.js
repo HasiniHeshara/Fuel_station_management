@@ -14,6 +14,12 @@ const EVRegisterSchema = new Schema({
          type:String,
          required: true,
      },
+     
+   confirmpassword:{
+         type:String,
+         required: true,
+     },
+
      vtype:{
         type:String,
         required:true,
