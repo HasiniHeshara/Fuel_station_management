@@ -66,6 +66,9 @@ import AdminChat from './Components/MessageAdmin/AdminChat';
 import EnterPin from './Components/Pin/EnterPin';
 import CreatePin from './Components/Pin/CreatePin';
 
+import AppointmentProfile from './Components/EVAppointmentProfile/EVAppointmentProfile';
+
+
 function App() {
   return (
     <div>
@@ -89,7 +92,7 @@ function App() {
                     <Route path="/factories" element={<AllFactories />} />
                     <Route path="/factory/update/:id" element={<UpdateFactory />} />
            <Route path="/ev-rating" element={<EVRatingPage />} />
- <Route path="/ratingdisplay" element={<EVRatingList />} />
+          <Route path="/ratingdisplay" element={<EVRatingList />} />
                     <Route path="/addstock" element={<AddStock/>}/>
                     <Route path="/displaystock/:id" element={<DisplayStock/>}/>
                     <Route path="/updatestock/:id" element={<UpdateStock/>}/>
@@ -142,6 +145,9 @@ function App() {
           <Route path="/adminchat" element={<AdminChat/>} />
           <Route path="/enterpin" element={<EnterPin/>} />
           <Route path="/createpin" element={<CreatePin/>} />
+
+          <Route path="/appoinment/profile/:id" element={<AppointmentProfile />} />
+
 
 
           </Routes>
