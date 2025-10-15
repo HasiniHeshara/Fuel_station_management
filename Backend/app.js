@@ -24,6 +24,7 @@ const bulkOrderRoutes = require('./Routes/BulkOrderRoutes');
 const paymentRoutes = require("./Routes/BulkincomeRoutes");
 const chatRoutes = require("./Routes/chatRoutes");
 const RatingRoutes = require("./Routes/RatingRoutes");
+const FeedbackRoutes = require("./Routes/FeedbackRoutes");
 
 const initSocket = require("./Controllers/socket");
 
@@ -47,6 +48,7 @@ app.use('/api/bulkorders', bulkOrderRoutes);
 app.use("/api/payments", paymentRoutes);
 app.use("/api/chat", chatRoutes);
 app.use("/rating", RatingRoutes);
+app.use("/feedbacks", FeedbackRoutes);
 
 app.use("/files", express.static("files"));
 
