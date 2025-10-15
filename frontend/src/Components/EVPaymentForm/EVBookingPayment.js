@@ -82,7 +82,7 @@ function EVBookingPayment() {
       setForm({ ...form, cvv: digits });
     }
   };
-  
+
   const handleDateChange = async (e) => {
     const selectedDate = e.target.value;
     setForm({ ...form, date: selectedDate, slot: "" });
@@ -248,11 +248,11 @@ function EVBookingPayment() {
       console.error("Error starting PayHere payment:", err);
       alert("Failed to start PayHere payment.");
     }
-  };
+  }; 
 
   const handleRateNow = () => navigate("/ev-rating");
   const handleLater = () => navigate(`/appoinment/profile/${bookingId}`);
-
+ 
   return (
     <div className="ev-bg">
       <nav className="ev-navbar">
@@ -303,7 +303,6 @@ function EVBookingPayment() {
               <option value="Car">Car - Rs. 1000</option>
               <option value="Bike">Bike - Rs. 500</option>
               <option value="Other">Other - Rs. 700</option>
-              
             </select>
 
             <input

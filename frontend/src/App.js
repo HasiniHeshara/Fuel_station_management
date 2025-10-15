@@ -70,6 +70,7 @@ import EnterPin from './Components/Pin/EnterPin';
 import CreatePin from './Components/Pin/CreatePin';
 
 import AppointmentProfile from './Components/EVAppointmentProfile/EVAppointmentProfile';
+import MyAppointment from './Components/EVMyAppointments/EVMyAppointments';
 
 
 function App() {
@@ -153,6 +154,9 @@ function App() {
           <Route path="/createpin" element={<CreatePin/>} />
 
           <Route path="/appoinment/profile/:id" element={<AppointmentProfile />} />
+
+                    <Route path="/myappointments/:gmail" element={<MyAppointment/>} />
+
 
 
 
