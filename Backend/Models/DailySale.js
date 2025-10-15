@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 const DailySaleSchema = new Schema({
   date: {
-    type: String,
+    type: String, // keep as string since your form posts yyyy-mm-dd
     required: true,
   },
   type: {
@@ -13,14 +13,14 @@ const DailySaleSchema = new Schema({
   soldQuantity: {
     type: Number,
     required: true,
+    min: 0,
   },
+  // store a reference to the MemberModel
   staff: {
-    type: String,
+    type: Schema.Types.ObjectId,
+    ref: "MemberModel",
     required: true,
   },
-});
+}, { timestamps: true });
 
-module.exports = mongoose.model(
-  "DailySale", 
-  DailySaleSchema
-);
+module.exports = mongoose.model("DailySale", DailySaleSchema);

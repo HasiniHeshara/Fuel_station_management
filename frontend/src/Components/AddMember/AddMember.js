@@ -4,65 +4,80 @@ import axios from 'axios';
 import './AddMember.css';
 import logo from '../../assets/f2.png';
 
+const ROLE_OPTIONS = [
+  'manager',
+  'admin',
+  'petrol station attendant',
+  'technician',
+];
+
 function AddMember() {
   const navigate = useNavigate();
+
   const [inputs, setInputs] = useState({
-    name: "",
-    gmail: "",
-    password: "",
-    role: "",
-    age: "",
-    address: "",
-    contact: "",
+    name: '',
+    gmail: '',
+    password: '',
+    role: '',
+    age: '',
+    address: '',
+    contact: '',
   });
 
   const [errors, setErrors] = useState({});
 
   const handleChange = (e) => {
-    setInputs(prev => ({
+    setInputs((prev) => ({
       ...prev,
       [e.target.name]: e.target.value.trimStart(),
     }));
   };
 
   const validate = () => {
-    let newErrors = {};
+    const newErrors = {};
 
     // Name: only letters and spaces
     if (!inputs.name.trim()) {
-      newErrors.name = "Full name is required";
+      newErrors.name = 'Full name is required';
     } else if (!/^[A-Za-z\s]+$/.test(inputs.name)) {
-      newErrors.name = "Name cannot contain numbers or symbols";
+      newErrors.name = 'Name cannot contain numbers or symbols';
     }
 
     // Email: must end with @gmail.com
     if (!inputs.gmail.trim()) {
-      newErrors.gmail = "Email is required";
+      newErrors.gmail = 'Email is required';
     } else if (!/^[a-zA-Z0-9._%+-]+@gmail\.com$/.test(inputs.gmail)) {
-      newErrors.gmail = "Email must be in format example@gmail.com";
+      newErrors.gmail = 'Email must be in format example@gmail.com';
     }
 
     // Password: at least 4 characters
     if (!inputs.password) {
-      newErrors.password = "Password is required";
+      newErrors.password = 'Password is required';
     } else if (inputs.password.length < 4) {
-      newErrors.password = "Password must be at least 4 characters";
+      newErrors.password = 'Password must be at least 4 characters';
     }
 
-    // Age: must be a number between 18 and 70
+    // Role: must be one of the dropdown values
+    if (!inputs.role) {
+      newErrors.role = 'Role is required';
+    } else if (!ROLE_OPTIONS.includes(inputs.role)) {
+      newErrors.role = 'Please select a valid role';
+    }
+
+    // Age: number between 18 and 70
     if (!inputs.age) {
-      newErrors.age = "Age is required";
+      newErrors.age = 'Age is required';
     } else if (!/^[0-9]+$/.test(inputs.age)) {
-      newErrors.age = "Age must be a number";
-    } else if (inputs.age < 18 || inputs.age > 70) {
-      newErrors.age = "Age must be between 18 and 70";
+      newErrors.age = 'Age must be a number';
+    } else if (Number(inputs.age) < 18 || Number(inputs.age) > 70) {
+      newErrors.age = 'Age must be between 18 and 70';
     }
 
     // Contact: 10–15 digits
     if (!inputs.contact.trim()) {
-      newErrors.contact = "Contact number is required";
+      newErrors.contact = 'Contact number is required';
     } else if (!/^[0-9]{10,15}$/.test(inputs.contact)) {
-      newErrors.contact = "Contact number must be 10 to 15 digits";
+      newErrors.contact = 'Contact number must be 10 to 15 digits';
     }
 
     setErrors(newErrors);
@@ -71,19 +86,26 @@ function AddMember() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!validate()) return; // stop if validation fails
-    
+    if (!validate()) return;
+
     try {
-      const res = await axios.post("http://localhost:5000/members", inputs);
-      const memberId = res.data.member._id;
-      if (!memberId) throw new Error("No member ID returned");
-      alert("Member added successfully");
-      navigate(`/memberlogin`);
+      const res = await axios.post('http://localhost:5000/members', inputs);
+      const memberId = res?.data?.member?._id;
+      if (!memberId) throw new Error('No member ID returned');
+      alert('Member added successfully');
+      navigate('/displaymember');
     } catch (err) {
-      alert("Error adding member. Please check console for details.");
       console.error(err);
+      alert('Error adding member. Please check console for details.');
     }
   };
+
+  // Pretty label for multi-word lower-case option
+  const labelize = (s) =>
+    s
+      .split(' ')
+      .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
+      .join(' ');
 
   return (
     <div className="addfuelstaff-page">
@@ -103,7 +125,8 @@ function AddMember() {
           <h2 className="addfuelstaff-subtitle">Add Fuel Station Staff</h2>
         </div>
 
-        <form onSubmit={handleSubmit} className="addfuelstaff-form">
+        <form onSubmit={handleSubmit} className="addfuelstaff-form" noValidate>
+          {/* Name */}
           <div className="form-group">
             <label htmlFor="name">Full Name:</label>
             <input
@@ -117,6 +140,7 @@ function AddMember() {
             {errors.name && <p className="error">{errors.name}</p>}
           </div>
 
+          {/* Gmail */}
           <div className="form-group">
             <label htmlFor="gmail">Email Address:</label>
             <input
@@ -126,10 +150,12 @@ function AddMember() {
               onChange={handleChange}
               value={inputs.gmail}
               autoComplete="off"
+              placeholder="example@gmail.com"
             />
             {errors.gmail && <p className="error">{errors.gmail}</p>}
           </div>
 
+          {/* Password */}
           <div className="form-group">
             <label htmlFor="password">Password:</label>
             <input
@@ -142,19 +168,29 @@ function AddMember() {
             {errors.password && <p className="error">{errors.password}</p>}
           </div>
 
+          {/* Role dropdown */}
           <div className="form-group">
             <label htmlFor="role">Role / Job Title:</label>
-            <input
-              type="text"
+            <select
               id="role"
               name="role"
-              onChange={handleChange}
               value={inputs.role}
-              autoComplete="off"
+              onChange={handleChange}
               required
-            />
+            >
+              <option value="" disabled>
+                Select a role
+              </option>
+              {ROLE_OPTIONS.map((opt) => (
+                <option key={opt} value={opt}>
+                  {labelize(opt)}
+                </option>
+              ))}
+            </select>
+            {errors.role && <p className="error">{errors.role}</p>}
           </div>
 
+          {/* Age */}
           <div className="form-group">
             <label htmlFor="age">Age:</label>
             <input
@@ -163,10 +199,13 @@ function AddMember() {
               name="age"
               onChange={handleChange}
               value={inputs.age}
+              min="18"
+              max="70"
             />
             {errors.age && <p className="error">{errors.age}</p>}
           </div>
 
+          {/* Address */}
           <div className="form-group">
             <label htmlFor="address">Address:</label>
             <input
@@ -180,6 +219,7 @@ function AddMember() {
             />
           </div>
 
+          {/* Contact */}
           <div className="form-group">
             <label htmlFor="contact">Contact Number:</label>
             <input
@@ -189,6 +229,7 @@ function AddMember() {
               onChange={handleChange}
               value={inputs.contact}
               autoComplete="off"
+              placeholder="07XXXXXXXX"
             />
             {errors.contact && <p className="error">{errors.contact}</p>}
           </div>
