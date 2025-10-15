@@ -5,7 +5,7 @@ const addSupplier = async (req, res) => {
   try {
     const { name, company, gmail, contact, address, category} = req.body;
 
-    if (!name || !gmail || !contact || !address || !category) {
+    if (!name || !company || !gmail || !contact || !address || !category) {
       return res
         .status(400)
         .json({ message: "name, gmail, contact, and address are required" });
