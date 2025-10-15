@@ -36,6 +36,7 @@ function StockDisplay() {
     }
   };
 
+  //pdf downloading
   const downloadPDF = () => {
     const doc = new jsPDF();
     doc.text("Fuel Stock Report", 14, 10);

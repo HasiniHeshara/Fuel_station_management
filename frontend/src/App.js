@@ -16,6 +16,7 @@ import EVDetail from './Components/EVDetails/EVDetails';
 
 import EVRegister from './Components/EVRegister/EVRegister';
 import EVLogin from './Components/EVLogin/EVLogin';
+import EVResetPassword from './Components/EVLogin/EVResetPassword';
 import EVProfile from './Components/EVList/EVList';
 import FactoryLogin from './Components/FactoryLogin/FactoryLogin';
 import FRegister from './Components/AddFactory/RegisterFactory';
@@ -31,6 +32,7 @@ import AddFuelMember from './Components/AddMember/AddMember';
 import DisplayFuelMember from './Components/MemberDisplay/MemberDisplay'; 
 import SingleMember from './Components/SingleMember/SingleMember';
 import MemberLogin from './Components/MemberLogin/MemberLogin';
+import MemberForgotPassword from './Components/MemberLogin/MemberFogot';
 
 import PaymentPage from './Components/Payment/payment';
 import DisplayPayment from './Components/DisplayPayment/DisplayPayment';
@@ -41,8 +43,9 @@ import AddStock from './Components/AddStock/AddStock';
 import DisplayStock from './Components/StockDisplay/StockDisplay';
 import UpdateStock from './Components/UpdateStock/UpdateStock';
 import RecordSale from './Components/RecordSale/RecordSale';
-
+import UpdateSale from './Components/UpdateSale/UpdateSale';
 import AllFactories from './Components/DisplayFactory/DisplayFactory';
+import FactoryForgotPassword from './Components/FactoryLogin/FactoryForgotPassword';
 
 import DisplayRecord from './Components/DisplayRecord/DisplayRecord';
 import BulkOrderForm from './Components/BulkOrderForm/BulkOrderForm';
@@ -67,6 +70,10 @@ import AdminChat from './Components/MessageAdmin/AdminChat';
 import EnterPin from './Components/Pin/EnterPin';
 import CreatePin from './Components/Pin/CreatePin';
 
+import AppointmentProfile from './Components/EVAppointmentProfile/EVAppointmentProfile';
+import MyAppointment from './Components/EVMyAppointments/EVMyAppointments';
+
+
 function App() {
   return (
     <div>
@@ -83,22 +90,24 @@ function App() {
                     <Route path="/evregister" element={<EVRegister />} />
                     <Route path="/ev/updateEV/:id" element={<UpdateEV />} />
                     <Route path="/evlog" element={<EVLogin />} />
+                    <Route path="/evreset" element={<EVResetPassword />} />
                     <Route path="/ev/profile/:id" element={<EVProfile />} />
                     <Route path="/flogin" element={<FactoryLogin />} />
+                    <Route path="/fogotpassword" element={<FactoryForgotPassword />} />
                     <Route path="/fRegister" element={<FRegister />} />
                     <Route path="/factory/profile/:id" element={<FactoryProfile />} />
                     <Route path="/factories" element={<AllFactories />} />
                     <Route path="/factory/update/:id" element={<UpdateFactory />} />
-           <Route path="/ev-rating" element={<EVRatingPage />} />
- <Route path="/ratingdisplay" element={<EVRatingList />} />
+                    <Route path="/ev-rating" element={<EVRatingPage />} />
+                    <Route path="/ratingdisplay" element={<EVRatingList />} />
                     <Route path="/addstock" element={<AddStock/>}/>
                     <Route path="/displaystock/:id" element={<DisplayStock/>}/>
                     <Route path="/updatestock/:id" element={<UpdateStock/>}/>
-
+                    <Route path="/updatesales/:id" element={<UpdateSale />} />
 
                     <Route path="/recordsale" element={<RecordSale />} />
 
-          <Route path="/placeorder/:id" element={<BulkOrderForm />} />
+                    <Route path="/placeorder/:id" element={<BulkOrderForm />} />
 
 
                     <Route path="/sales" element={<DisplayRecord />} />
@@ -118,6 +127,7 @@ function App() {
           <Route path="/addmember" element={<AddFuelMember/>}/>
           <Route path="/displaymember" element={<DisplayFuelMember/>}/>
           <Route path="/memberlogin" element={<MemberLogin />} />
+          <Route path="/member-forgot" element={<MemberForgotPassword />} />
             <Route path="/displaysinglemember/:id" element={<SingleMember />} />
            <Route path="/updatemember/:id" element={<UpdateMember />} />
 
@@ -144,7 +154,14 @@ function App() {
           <Route path="/enterpin" element={<EnterPin/>} />
           <Route path="/createpin" element={<CreatePin/>} />
 
+
                     <Route path="/appoinment/update/:id" element={<UpdateAppointment />} />
+
+          <Route path="/appoinment/profile/:id" element={<AppointmentProfile />} />
+
+                    <Route path="/myappointments/:gmail" element={<MyAppointment/>} />
+
+
 
 
 

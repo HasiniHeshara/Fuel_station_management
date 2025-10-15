@@ -38,7 +38,7 @@ function EVBookingPayment() {
   const [payhereLoaded, setPayhereLoaded] = useState(false);
 
   const navigate = useNavigate();
-  const priceMap = { Car: 1000, Bike: 500, Other: 700 , lorry: 1500};
+  const priceMap = { Car: 1000, Bike: 500, Other: 700 };
 
   useEffect(() => {
     const script = document.createElement("script");
@@ -248,11 +248,11 @@ function EVBookingPayment() {
       console.error("Error starting PayHere payment:", err);
       alert("Failed to start PayHere payment.");
     }
-  };
+  }; 
 
   const handleRateNow = () => navigate("/ev-rating");
   const handleLater = () => navigate(`/appoinment/profile/${bookingId}`);
-
+ 
   return (
     <div className="ev-bg">
       <nav className="ev-navbar">
@@ -303,7 +303,6 @@ function EVBookingPayment() {
               <option value="Car">Car - Rs. 1000</option>
               <option value="Bike">Bike - Rs. 500</option>
               <option value="Other">Other - Rs. 700</option>
-              <option value="Lorry">Lorry- Rs.15000</option>
             </select>
 
             <input

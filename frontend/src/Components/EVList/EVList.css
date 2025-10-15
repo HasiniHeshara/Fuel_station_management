@@ -47,7 +47,7 @@
   background: rgba(255, 255, 255, 0.68);
   border-radius: 16px;
   padding:2rem 2.5rem;
-  max-width: 700px;
+  max-width: 900px;
   width: 100%;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
   backdrop-filter: blur(12px);
@@ -92,12 +92,12 @@
   gap: 1.5rem;
 }
 
-.update-btn,
+.ev-update-btn,
 .EV-delete-btn {
   padding: 0.1rem 1.1rem;
   font-weight: 700;
   border-radius: 8px;
-  width: 400px;
+  width: 300px;
   cursor: pointer;
   border: none;
   font-size: 1rem;
@@ -106,12 +106,12 @@
   box-shadow: 0 4px 12px rgba(112, 185, 224, 0.5);
 }
 
-.update-btn {
+.ev-update-btn {
   background-color: #0f62fe;
   color: white;
 }
 
-.update-btn:hover {
+.ev-update-btn:hover {
   background-color: #0043ce;
   box-shadow: 0 6px 18px rgba(0, 67, 206, 0.7);
 }
@@ -143,6 +143,37 @@
   background-color: #388e3c;
 }
 
+/* View My Appointments Button */
+.view-appointment-btn {
+  background-color: #da8300;
+  color: white;
+  border: none;
+  width: 620px;
+  padding: 12px 18px;
+  margin-top: 10px;
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(255, 153, 0, 0.5);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
+  user-select: none;
+}
+
+.view-appointment-btn:hover {
+  background-color: #cc7a00;
+  box-shadow: 0 6px 18px rgba(204, 122, 0, 0.7);
+  transform: scale(1.05);
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+  .view-appointment-btn {
+    width: 90%;
+  }
+}
+
+
 
 /* Responsive */
 @media (max-width: 480px) {
@@ -159,7 +190,7 @@
     gap: 1rem;
   }
 
-  .update-btn,
+  .ev-update-btn,
   .EV-delete-btn {
     width: 90%;
   }

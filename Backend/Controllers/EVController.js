@@ -3,9 +3,9 @@ const EV = require("../Models/EVRegister");
 
 //register EV
 const registerEV = async (req, res) => {
-  const { name, gmail, password, vtype, address, contact } = req.body;
+  const { name, gmail, password, confirmpassword, vtype, address, contact } = req.body;
   try {
-    await EV.create({ name, gmail, password, vtype, address, contact });
+    await EV.create({ name, gmail, password,confirmpassword, vtype, address, contact });
     res.json({ status: "ok", message: "EV registered successfully" });
   } catch (err) {
     console.error("Error registering EV:", err);

@@ -16,15 +16,61 @@ function AddStock() {
   const handleChange = (e) => {
     setStocks(prev => ({
       ...prev,
-      [e.target.name]: e.target.value.trimStart(), 
+      [e.target.name]: e.target.value.trimStart(),
     }));
+  };
+
+  // Validation function
+  const validateStock = () => {
+    const { date, type, quantity, supplier } = stocks;
+
+    // Date validation
+    if (!date) {
+      alert("Please select a date.");
+      return false;
+    }
+
+    const selectedDate = new Date(date);
+    const today = new Date();
+
+    // reset both to midnight (ignore time part)
+    selectedDate.setHours(0, 0, 0, 0);
+    today.setHours(0, 0, 0, 0);
+
+    if (selectedDate > today) {
+      alert("Date cannot be in the future.");
+      return false;
+    }
+
+    // Fuel type validation
+    if (!type) {
+      alert("Please select a fuel type.");
+      return false;
+    }
+
+    // Quantity validation
+    if (!quantity || isNaN(quantity) || Number(quantity) <= 0) {
+      alert("Please enter a valid quantity greater than 0.");
+      return false;
+    }
+
+    // Supplier validation
+    if (!supplier) {
+      alert("Please select a supplier.");
+      return false;
+    }
+
+    return true;
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (!validateStock()) return;
+
     try {
       const res = await axios.post("http://localhost:5000/stocks", stocks);
-      const stockId = res.data.stock._id;
+      const stockId = res.data?.stock?._id;
       if (!stockId) throw new Error("No stock ID returned");
       alert("Stock added successfully");
       navigate(`/displaystock/${stockId}`);
@@ -61,6 +107,7 @@ function AddStock() {
               name="date"
               onChange={handleChange}
               value={stocks.date}
+              max={new Date().toISOString().split("T")[0]} // 🚀 prevents selecting tomorrow/future
               required
               autoComplete="off"
             />
@@ -76,7 +123,6 @@ function AddStock() {
               required
             >
               <option value="">-- Select Fuel Type --</option>
-              {/*<option value="Gasoline">Gasoline</option>*/}
               <option value="Diesel">Diesel</option>
               <option value="Kerosene">Kerosene</option>
               <option value="Petrol 92">Petrol 92</option>
@@ -96,23 +142,10 @@ function AddStock() {
               required
             />
           </div>
-
-         {/* <div className="form-group">
-            <label htmlFor="supplier">Supplier:</label>
-            <input
-              type="text"
-              id="supplier"
-              name="supplier"
-              onChange={handleChange}
-              value={stocks.supplier}
-              required
-              autoComplete="off"
-            />
-          </div>*/}
-
           
+
           <div className="b-form-group">
-            <label htmlFor="type">Supplier Name:</label>
+            <label htmlFor="supplier">Supplier Name:</label>
             <select
               id="supplier"
               name="supplier"
@@ -121,7 +154,6 @@ function AddStock() {
               required
             >
               <option value="">-- Select Supplier --</option>
-              {/*<option value="Gasoline">Gasoline</option>*/}
               <option value="Mr. Amal">Mr. Amal</option>
               <option value="Mr. Silva">Mr. Silva</option>
               <option value="Mr. Kamal">Mr. Kamal</option>
