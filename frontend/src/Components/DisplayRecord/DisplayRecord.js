@@ -42,7 +42,7 @@ function DisplayRecord() {
       alert('Error deleting sale');
     }
   };
-
+//pdf downloading
   const downloadPDF = () => {
     const doc = new jsPDF();
     doc.setFontSize(18);
