@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import './Admin.css';
 import logo from '../../assets/f2.png';
-import {FaGasPump,FaUsers,FaTruck,FaMoneyBill,FaFileInvoiceDollar,FaOilCan,FaWarehouse,FaMoneyBillWave, FaBriefcase, FaChargingStation ,FaPlug, FaCreditCard,FaWhatsapp, FaStar ,FaTruckLoading, FaCoins, FaCommentDots , FaComments} from 'react-icons/fa';
+import {FaGasPump,FaUsers,FaTruck,FaMoneyBill,FaFileInvoiceDollar,FaOilCan,FaWarehouse, FaUserPlus, FaMoneyBillWave, FaBriefcase, FaChargingStation ,FaPlug, FaCreditCard,FaWhatsapp, FaStar ,FaTruckLoading, FaCoins, FaCommentDots , FaComments} from 'react-icons/fa';
 
 function Admin() {
 
@@ -67,6 +67,8 @@ function Admin() {
               <h3>Payment For Fuel</h3>
               <p>Check and manage Payments</p>
             </Link>
+
+            
           </div>
 
           {/* Row 2 */}
@@ -162,6 +164,12 @@ function Admin() {
               <FaComments  size={40} className="card-icon" />
               <h3>Customer's Chat</h3>
               <p>View All Customer's Chat</p>
+            </Link>
+
+            <Link to="/supplierdisplay" className="card">
+              <FaUserPlus size={40} className="card-icon" />
+              <h3>Manage Supplier</h3>
+              <p>Check and manage suppliers</p>
             </Link>
 
           </div>

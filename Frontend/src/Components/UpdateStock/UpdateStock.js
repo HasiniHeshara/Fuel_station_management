@@ -36,8 +36,58 @@ function UpdateStock() {
     setStock({ ...stock, [e.target.name]: e.target.value });
   };
 
+   // ✅ Validation function
+  const validateStock = () => {
+    const { date, quantity } = stock;
+
+    // --- Date Validation ---
+    if (!date) {
+      alert("Please select a date.");
+      return false;
+    }
+
+    const selectedDate = new Date(date);
+    const today = new Date();
+    selectedDate.setHours(0, 0, 0, 0);
+    today.setHours(0, 0, 0, 0);
+
+    if (selectedDate > today) {
+      alert("Date cannot be in the future.");
+      return false;
+    }
+
+      // --- Date Validation ---
+    if (!date) {
+      alert("⚠️ Please select a date.");
+      return false;
+    }
+
+
+    // normalize both dates (ignore time part)
+    selectedDate.setHours(0, 0, 0, 0);
+    today.setHours(0, 0, 0, 0);
+
+    if (selectedDate > today) {
+      alert("❌ Date cannot be in the future.");
+      return false;
+    }
+
+    
+
+    // --- Quantity Validation ---
+    if (!quantity || isNaN(quantity) || Number(quantity) <= 0) {
+      alert("Quantity must be a number greater than 0.");
+      return false;
+    }
+
+    return true;
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (!validateStock()) return; // 🚨 stop if invalid
+
     try {
       const payload = {
         ...stock,

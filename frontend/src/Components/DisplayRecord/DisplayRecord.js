@@ -16,40 +16,49 @@ function DisplayRecord() {
   }, []);
 
   const fetchSales = () => {
-    axios.get("http://localhost:5000/sales")
-      .then(res => setSales(res.data.sales))
-      .catch(err => console.error("Failed to fetch sales", err));
+    axios.get('http://localhost:5000/sales')
+      .then(res => setSales(res.data?.sales || []))
+      .catch(err => {
+        console.error('Failed to fetch sales', err?.response?.data || err.message);
+        setSales([]);
+      });
+  };
+
+  // Handle legacy (string) and populated (object) staff
+  const getStaffName = (staff) => {
+    if (!staff) return '-';
+    if (typeof staff === 'string') return staff;
+    return staff?.name || '-';
   };
 
   const handleDelete = async (id) => {
-    if (window.confirm("Are you sure you want to delete this sale record?")) {
-      try {
-        await axios.delete(`http://localhost:5000/sales/${id}`);
-        setSales(sales.filter(sale => sale._id !== id));
-        alert("Sale deleted successfully");
-      } catch (err) {
-        console.error("Failed to delete", err);
-        alert("Error deleting sale");
-      }
+    if (!window.confirm('Are you sure you want to delete this sale record?')) return;
+    try {
+      await axios.delete(`http://localhost:5000/sales/${id}`);
+      setSales(prev => prev.filter(sale => sale._id !== id));
+      alert('Sale deleted successfully');
+    } catch (err) {
+      console.error('Failed to delete', err?.response?.data || err.message);
+      alert('Error deleting sale');
     }
   };
-
+//pdf downloading
   const downloadPDF = () => {
     const doc = new jsPDF();
     doc.setFontSize(18);
-    doc.text("Fuel Sales Report", 14, 22);
+    doc.text('Fuel Sales Report', 14, 22);
 
     const filteredSales = sales.filter(
       sale => searchDate === '' || sale.date === searchDate
     );
 
-    const tableData = filteredSales.map((sale, index) => [
+    const tableData = filteredSales.map((sale, index) => ([
       index + 1,
       sale.date,
       sale.type,
       sale.soldQuantity,
-      sale.staff
-    ]);
+      getStaffName(sale.staff),
+    ]));
 
     autoTable(doc, {
       startY: 30,
@@ -59,6 +68,8 @@ function DisplayRecord() {
 
     doc.save('Fuel_Sales_Report.pdf');
   };
+
+  const filtered = sales.filter(sale => searchDate === '' || sale.date === searchDate);
 
   return (
     <div className="sale-records-page">
@@ -78,7 +89,7 @@ function DisplayRecord() {
 
       <div className="search-bar">
         <label htmlFor="searchDate">📅 Filter by Date: </label>
-        <input 
+        <input
           type="date"
           id="searchDate"
           value={searchDate}
@@ -90,24 +101,32 @@ function DisplayRecord() {
         </div>
       </div>
 
-      {sales.length === 0 ? (
+      {filtered.length === 0 ? (
         <p className="no-data">No sales recorded yet.</p>
       ) : (
         <div className="sales-table">
-          {sales
-            .filter(sale => searchDate === '' || sale.date === searchDate)
-            .map((sale) => (
-              <div className="sale-card" key={sale._id}>
-                <p><strong>Date:</strong> {sale.date}</p>
-                <p><strong>Fuel Type:</strong> {sale.type}</p>
-                <p><strong>Sold Quantity:</strong> {sale.soldQuantity} Liters</p>
-                <p><strong>Staff:</strong> {sale.staff}</p>
-                <div>
-                  <button className="RUpdate" onClick={() => navigate(`/updatesales/${sale._id}`)}>Update</button>
-                  <button className="RDelete" onClick={() => handleDelete(sale._id)}>Delete</button>
-                </div>
+          {filtered.map((sale) => (
+            <div className="sale-card" key={sale._id}>
+              <p><strong>Date:</strong> {sale.date}</p>
+              <p><strong>Fuel Type:</strong> {sale.type}</p>
+              <p><strong>Sold Quantity:</strong> {sale.soldQuantity} Liters</p>
+              <p><strong>Staff:</strong> {getStaffName(sale.staff)}</p>
+              <div>
+                <button
+                  className="RUpdate"
+                  onClick={() => navigate(`/updatesales/${sale._id}`)}
+                >
+                  Update
+                </button>
+                <button
+                  className="RDelete"
+                  onClick={() => handleDelete(sale._id)}
+                >
+                  Delete
+                </button>
               </div>
-            ))}
+            </div>
+          ))}
         </div>
       )}
     </div>
