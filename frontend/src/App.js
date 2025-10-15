@@ -59,6 +59,7 @@ import PrivacyPolicy from './Components/PrivacyPolicy/PrivacyPolicy';
 import TermsOfService from './Components/PrivacyPolicy/TermsOfService';
 import BulkPaymentInsert from './Components/BulkPaymentInsert/BulkPaymentInsert';
 
+import UpdateAppointment from './Components/UpdateAppointment/UpdateAppointment';
 
 
 import CustomerChat from './Components/MessageCustomer/CustomerChat';
@@ -142,6 +143,9 @@ function App() {
           <Route path="/adminchat" element={<AdminChat/>} />
           <Route path="/enterpin" element={<EnterPin/>} />
           <Route path="/createpin" element={<CreatePin/>} />
+
+                    <Route path="/appoinment/update/:id" element={<UpdateAppointment />} />
+
 
 
           </Routes>
