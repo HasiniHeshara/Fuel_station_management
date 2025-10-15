@@ -33,6 +33,9 @@ import DisplayFuelMember from './Components/MemberDisplay/MemberDisplay';
 import SingleMember from './Components/SingleMember/SingleMember';
 import MemberLogin from './Components/MemberLogin/MemberLogin';
 import MemberForgotPassword from './Components/MemberLogin/MemberFogot';
+import DisplaySupplier from './Components/SupplierDisplay/SupplierDisplay'; 
+import AddSupplier from './Components/AddSupplier/AddSupplier'; 
+import UpdateSupplier from './Components/UpdateSupplier/UpdateSupplier'; 
 
 import PaymentPage from './Components/Payment/payment';
 import DisplayPayment from './Components/DisplayPayment/DisplayPayment';
@@ -79,11 +82,10 @@ function App() {
         <Routes>
 
 
-          <Route path="/" element={<Home/>}/>
-          <Route path="/mainhome" element={<Home/>}/>
+                      <Route path="/" element={<Home/>}/>
+                      <Route path="/mainhome" element={<Home/>}/>
 
-
-          <Route path="/fuel-levels" element={<FuelLevels />} />
+                    <Route path="/fuel-levels" element={<FuelLevels />} />
                     <Route path="/fuel-levels" element={<FuelLevels />} />
                     <Route path="/evregister" element={<EVRegister />} />
                     <Route path="/ev/updateEV/:id" element={<UpdateEV />} />
@@ -128,6 +130,10 @@ function App() {
           <Route path="/member-forgot" element={<MemberForgotPassword />} />
             <Route path="/displaysinglemember/:id" element={<SingleMember />} />
            <Route path="/updatemember/:id" element={<UpdateMember />} />
+           <Route path="/displaysupplier" element={<DisplaySupplier/>}/>
+           <Route path="/addsupplier" element={<AddSupplier/>}/>
+           <Route path="/updatesupplier/:id" element={<UpdateSupplier />} />
+
 
 
           <Route path="/payment/:id" element={<PaymentPage />} />
