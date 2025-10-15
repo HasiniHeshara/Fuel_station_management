@@ -1,0 +1,215 @@
+:root{
+  /* tweak this if you want a different dark blue */
+  --brand-dark-blue: #071748;   /* dark blue */
+  --brand-dark-blue-hover: #031342; /* a bit darker for hover */
+}
+
+.feedbacklist-display-page {
+  min-height: 100vh;
+  background: url('../../assets/f1.jpg') no-repeat center center fixed;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  padding-top: 100px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Navbar */
+.feedbacklist-display-navbar {
+  width: 100%;
+  height: 70px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: rgba(0, 18, 135, 0.9);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 50px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+}
+
+.feedbacklist-display-navbar .feedbacknav-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #ffffff;
+  text-decoration: none;
+}
+
+/* match your JSX: .nav-links */
+.feedbacklist-display-navbar .nav-links a {
+  margin-left: 25px;
+  text-decoration: none;
+  color: #ffffff;
+  font-weight: 500;
+  transition: opacity 0.2s ease;
+}
+.feedbacklist-display-navbar .nav-links a:hover {
+  opacity: 0.85;
+}
+
+/* ===== Actions row ===== */
+.feedbacklist-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 0 20px;
+  margin: 18px auto 26px;
+  width: min(1100px, 100%);
+}
+
+.feedbacklist-filters {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.feedbacklist-filters input,
+.feedbacklist-filters select {
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid #000000;
+  outline: none;
+  font-size: 1rem;
+}
+
+.feedbacklist-filters button {
+  padding: 10px 15px;
+  border-radius: 8px;
+  border: none;
+  background: #ff4d4d;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+.feedbacklist-filters button:hover {
+  background: #cc0000;
+}
+
+/* export buttons area */
+.feedbacklist-export {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+/* base button + PDF button look */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 44px;          /* consistent, touch-friendly */
+  padding: 0 18px;
+  border-radius: 10px;
+  border: 0;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
+  transition: transform 0.06s ease, box-shadow 0.2s ease, opacity 0.2s ease, background 0.2s ease;
+}
+
+/* DARK BLUE PDF BUTTON */
+.pdf-btn {
+  background: var(--brand-dark-blue);    /* dark blue */
+  color: #ffffff;
+}
+.pdf-btn:hover {
+  background: var(--brand-dark-blue-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 10px 18px rgba(0, 0, 0, 0.18);
+}
+.pdf-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
+}
+.pdf-btn:focus-visible {
+  outline: 3px solid #ffffff;
+  outline-offset: 2px;
+}
+
+/* Cards grid */
+.feedbacklist-cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  padding: 0 20px;
+}
+
+.feedbacklist-card {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 20px;
+  padding: 20px 25px;
+  max-width: 300px;
+  width: 100%;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.feedbacklist-card h3 {
+  margin: 0;
+  color: #007bff;
+}
+
+.feedbacklist-card p {
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+/* support both classnames used in JSX/CSS */
+.feedbacklist-card .feedback-date,
+.feedbacklist-card .feedbacklist-date {
+  font-size: 0.85rem;
+  color: #555;
+}
+
+.delete-btn {
+  margin-top: 10px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: none;
+  background: #ff4d4d;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+.delete-btn:hover {
+  background: #cc0000;
+}
+
+/* support both classnames used in JSX/CSS */
+.no-feedbacklist-msg,
+.no-feedback-msg {
+  text-align: center;
+  font-size: 1.1rem;
+  color: #333;
+}
+
+/* Responsive */
+@media (max-width: 800px) {
+  .feedbacklist-actions {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 14px;
+  }
+  .feedbacklist-export {
+    justify-content: center;
+  }
+  .btn {
+    width: 100%;
+    height: 46px;
+  }
+}
+
+@media (max-width: 600px) {
+  .feedbacklist-card {
+    max-width: 90%;
+  }
+}

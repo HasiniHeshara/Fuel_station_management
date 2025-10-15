@@ -52,8 +52,8 @@ import BulkOrderForm from './Components/BulkOrderForm/BulkOrderForm';
 import DailySummary from './Components/FuelIncomeSummary/DailyIncomeSummary';
 import BulkPaymentList from './Components/BulkPaymentList/BulkPaymentList';
 
-     
-
+import FeedbackInsertPage from './Components/FeedbackInsertPage/FeedbackInsertPage';     
+import FeedbackDisplayPage from './Components/FeedbackDisplayPage/FeedbackDisplayPage';
 
 import FuelStations from './Components/FuelStations/FuelStations';
 import ServicesPage from './Components/ServicePage/ServicesPage';
@@ -159,7 +159,11 @@ function App() {
 
           <Route path="/appoinment/profile/:id" element={<AppointmentProfile />} />
 
+          <Route path="/feedback" element={<FeedbackInsertPage/>} />
+          <Route path="/feedbackslist" element={<FeedbackDisplayPage/>} />
+
                     <Route path="/myappointments/:gmail" element={<MyAppointment/>} />
+
 
 
 
