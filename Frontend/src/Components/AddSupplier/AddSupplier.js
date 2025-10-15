@@ -123,7 +123,7 @@ function AddSupplier() {
               autoComplete="off"
             />
             {errors.name && <p className="error">{errors.name}</p>}
-          </div>
+          </div> 
 
           {/* Company */}
           <div className="form-group">
