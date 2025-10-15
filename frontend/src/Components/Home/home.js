@@ -249,7 +249,7 @@ function Home() {
             </div>
           </div>
           <div className="home-footer-bottom">
-            <p>© 2025 Dasu Filling Station. All Rights Reserved. | Fully Created & Developed by Amod Indupa</p>
+            <p>© 2025 Dasu Filling Station. All Rights Reserved.</p>
           </div>
         </footer>
       </div>

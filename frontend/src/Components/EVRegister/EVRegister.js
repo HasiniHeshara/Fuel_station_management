@@ -9,6 +9,7 @@ function EVRegister() {
     name: '',
     gmail: '',
     password: '',
+    confirmPassword:'',
     vtype: 'Car',
     address: '',
     contact: '',
@@ -44,6 +45,13 @@ function EVRegister() {
     } else if (formData.password.length < 4) {
       newErrors.password = "Password must be at least 4 characters";
     }
+
+    // Confirm Password: must match Password
+if (!formData.confirmpassword) {
+  newErrors.confirmpassword = "Confirm Password is required";
+} else if (formData.confirmpassword !== formData.password) {
+  newErrors.confirmpassword = "Passwords do not match";
+}
 
     // Contact: must be 10–15 digits
     if (!formData.contact.trim()) {
@@ -121,6 +129,17 @@ function EVRegister() {
               onChange={handleChange}
             />
             {errors.password && <p className="error">{errors.password}</p>}
+          </div>
+
+          <div className="form-group">
+            <label>Confirm Password</label>
+            <input
+              type="password"
+              name="confirmpassword"
+              value={formData.confirmpassword}
+              onChange={handleChange}
+            />
+            {errors.confirmpassword && <p className="error">{errors.confirmpassword}</p>}
           </div>
 
           <div className="form-group">

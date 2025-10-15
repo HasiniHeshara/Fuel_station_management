@@ -261,7 +261,7 @@ function Contact() {
             <Link to="/privacy">Privacy Policy</Link>
             <Link to="/term">Terms of Service</Link>
           </div>
-          <p>&copy; 2025 Dasu Filling Station, Galle. All Rights Reserved | Fully Created & Developed by Amod Indupa</p>
+          <p>&copy; 2025 Dasu Filling Station, Galle. All Rights Reserved</p>
         </div>
       </footer>
     </div>

@@ -38,7 +38,7 @@ function EVBookingPayment() {
   const [payhereLoaded, setPayhereLoaded] = useState(false);
 
   const navigate = useNavigate();
-  const priceMap = { Car: 1000, Bike: 500, Other: 700 , lorry: 1500};
+  const priceMap = { Car: 1000, Bike: 500, Other: 700 };
 
   useEffect(() => {
     const script = document.createElement("script");
@@ -82,7 +82,7 @@ function EVBookingPayment() {
       setForm({ ...form, cvv: digits });
     }
   };
-
+  
   const handleDateChange = async (e) => {
     const selectedDate = e.target.value;
     setForm({ ...form, date: selectedDate, slot: "" });
@@ -303,7 +303,7 @@ function EVBookingPayment() {
               <option value="Car">Car - Rs. 1000</option>
               <option value="Bike">Bike - Rs. 500</option>
               <option value="Other">Other - Rs. 700</option>
-              <option value="Lorry">Lorry- Rs.15000</option>
+              
             </select>
 
             <input

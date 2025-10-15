@@ -72,7 +72,7 @@ function AddMember() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!validate()) return; // stop if validation fails
-
+    
     try {
       const res = await axios.post("http://localhost:5000/members", inputs);
       const memberId = res.data.member._id;
