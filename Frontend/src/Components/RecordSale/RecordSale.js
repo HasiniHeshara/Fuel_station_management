@@ -30,8 +30,16 @@ function RecordSale() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    //validation
     if (!form.type || !form.soldQuantity || !form.staff) {
       alert("Please fill all fields");
+      return;
+    }
+
+    
+
+    if (Number(form.soldQuantity) <= 0) {
+      alert("Sold quantity must be greater than 0.");
       return;
     }
 

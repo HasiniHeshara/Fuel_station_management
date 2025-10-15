@@ -33,7 +33,7 @@ function DisplayRecord() {
       }
     }
   };
-
+//pdf downloading
   const downloadPDF = () => {
     const doc = new jsPDF();
     doc.setFontSize(18);
