@@ -43,7 +43,7 @@ import AddStock from './Components/AddStock/AddStock';
 import DisplayStock from './Components/StockDisplay/StockDisplay';
 import UpdateStock from './Components/UpdateStock/UpdateStock';
 import RecordSale from './Components/RecordSale/RecordSale';
-
+import UpdateSale from './Components/UpdateSale/UpdateSale';
 import AllFactories from './Components/DisplayFactory/DisplayFactory';
 import FactoryForgotPassword from './Components/FactoryLogin/FactoryForgotPassword';
 
@@ -62,6 +62,7 @@ import PrivacyPolicy from './Components/PrivacyPolicy/PrivacyPolicy';
 import TermsOfService from './Components/PrivacyPolicy/TermsOfService';
 import BulkPaymentInsert from './Components/BulkPaymentInsert/BulkPaymentInsert';
 
+import UpdateAppointment from './Components/UpdateAppointment/UpdateAppointment';
 
 
 import CustomerChat from './Components/MessageCustomer/CustomerChat';
@@ -70,6 +71,7 @@ import EnterPin from './Components/Pin/EnterPin';
 import CreatePin from './Components/Pin/CreatePin';
 
 import AppointmentProfile from './Components/EVAppointmentProfile/EVAppointmentProfile';
+import MyAppointment from './Components/EVMyAppointments/EVMyAppointments';
 
 
 function App() {
@@ -101,7 +103,7 @@ function App() {
                     <Route path="/addstock" element={<AddStock/>}/>
                     <Route path="/displaystock/:id" element={<DisplayStock/>}/>
                     <Route path="/updatestock/:id" element={<UpdateStock/>}/>
-
+                    <Route path="/updatesales/:id" element={<UpdateSale />} />
 
                     <Route path="/recordsale" element={<RecordSale />} />
 
@@ -152,9 +154,19 @@ function App() {
           <Route path="/enterpin" element={<EnterPin/>} />
           <Route path="/createpin" element={<CreatePin/>} />
 
+
+                    <Route path="/appoinment/update/:id" element={<UpdateAppointment />} />
+
           <Route path="/appoinment/profile/:id" element={<AppointmentProfile />} />
+
           <Route path="/feedback" element={<FeedbackInsertPage/>} />
           <Route path="/feedbackslist" element={<FeedbackDisplayPage/>} />
+
+                    <Route path="/myappointments/:gmail" element={<MyAppointment/>} />
+
+
+
+
 
 
           </Routes>

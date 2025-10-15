@@ -14,10 +14,12 @@ const MemberSchema = new Schema({
          type:String,
          required: true,
      },
-     role:{
-        type:String,
-        required:true,
-     },
+     role: {
+         type: String,
+         required: true,
+         enum: ['manager', 'admin', 'petrol station attendant', 'technician'],
+      },
+
      age:{
         type:Number,
         required:true,
