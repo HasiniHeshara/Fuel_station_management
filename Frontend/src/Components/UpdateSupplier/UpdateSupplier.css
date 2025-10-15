@@ -1,0 +1,134 @@
+.update-supplier-page {
+  min-height: 100vh;
+  background: url('../../assets/f1.jpg') no-repeat center center fixed;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+/* Navbar */
+.update-supplier-navbar {
+  width: 100%;
+  background-color: rgba(0, 0, 80, 0.7);
+  color: white;
+  padding: 12px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.update-supplier-navbar .nav-logo {
+  font-size: 20px;
+  font-weight: bold;
+  text-decoration: none;
+  color: white;
+}
+
+.update-supplier-navbar .nav-links a {
+  color: white;
+  margin-left: 20px;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.update-supplier-navbar .nav-links a:hover {
+  text-decoration: underline;
+}
+
+/* Overlay */
+.update-supplier-page::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 60, 0.3);
+  z-index: 0;
+}
+
+/* Form container */
+.update-supplier-container {
+  position: relative;
+  z-index: 1;
+  background: rgba(200, 200, 255, 0.92);
+  padding: 40px 50px;
+  border-radius: 15px;
+  max-width: 600px;
+  margin-top: 50px;
+  width: 90%;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+  text-align: center;
+}
+
+.update-supplier-logo {
+  width: 60px;
+  height: 60px;
+  margin-bottom: 20px;
+  border-radius: 50%;
+  background-color: #fff;
+  padding: 6px;
+  object-fit: contain;
+}
+
+.update-supplier-container h2 {
+  color: #002366;
+  margin-bottom: 25px;
+  font-size: 1.5rem;
+}
+
+.update-supplier-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.update-supplier-form .form-group {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.update-supplier-form label {
+  margin-bottom: 6px;
+  font-weight: bold;
+  color: #000;
+}
+
+.update-supplier-form input,
+.update-supplier-form select {
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #aaa;
+  background: rgba(255, 255, 255, 0.95);
+  font-size: 15px;
+}
+
+.update-supplier-form input:focus,
+.update-supplier-form select:focus {
+  border-color: #004aad;
+  outline: none;
+  box-shadow: 0 0 6px rgba(0, 74, 173, 0.4);
+}
+
+.update-supplier-form button {
+  margin-top: 15px;
+  padding: 12px;
+  background-color: #004aad;
+  color: #fff;
+  font-size: 17px;
+  font-weight: bold;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.update-supplier-form button:hover {
+  background-color: #005fff;
+}
+
+.error {
+  color: red;
+  font-size: 0.9rem;
+  margin-top: 4px;
+}
