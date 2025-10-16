@@ -86,3 +86,39 @@
 .update-sale-form button:hover {
   background: #e65c00;
 }
+/* Make the Staff <select> look exactly like your inputs */
+.update-sale-form select {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 6px;
+  background: #f1f1f1;
+  color: #333;
+  font-size: 16px;
+  box-sizing: border-box;
+  margin-bottom: 10px;
+  height: 44px;                 /* match input height */
+  appearance: none;             /* keep it input-like */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+
+  /* small dropdown arrow, still looks like your boxes */
+  background-image:
+    linear-gradient(45deg, transparent 50%, #666 50%),
+    linear-gradient(135deg, #666 50%, transparent 50%),
+    linear-gradient(to right, #ddd, #ddd);
+  background-position:
+    calc(100% - 18px) calc(50% - 5px),
+    calc(100% - 12px) calc(50% - 5px),
+    calc(100% - 2.4rem) 50%;
+  background-size: 6px 6px, 6px 6px, 1px 60%;
+  background-repeat: no-repeat;
+  padding-right: 2.8rem;        /* space for arrow */
+}
+
+/* Same focus glow as inputs */
+.update-sale-form select:focus {
+  outline: none;
+  background: #fff;
+  box-shadow: 0 0 5px #ff6b00;
+}
