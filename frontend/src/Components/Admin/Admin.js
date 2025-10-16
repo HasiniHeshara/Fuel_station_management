@@ -166,7 +166,7 @@ function Admin() {
               <p>View All Customer's Chat</p>
             </Link>
 
-            <Link to="/supplierdisplay" className="card">
+            <Link to="/displaysupplier" className="card">
               <FaUserPlus size={40} className="card-icon" />
               <h3>Manage Supplier</h3>
               <p>Check and manage suppliers</p>
