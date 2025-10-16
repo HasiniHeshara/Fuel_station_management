@@ -189,7 +189,7 @@ function UpdateSale() {
           <select
             name="staff"
             value={form.staff}
-            onChange={handleChange}
+            onChange={handleChange} 
             required
             aria-invalid={!!errors.staff}
             aria-describedby="err-staff"
