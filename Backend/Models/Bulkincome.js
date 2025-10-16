@@ -1,21 +1,46 @@
 const mongoose = require("mongoose");
 const bulkpaymentSchema = new mongoose.Schema({
 
-  orderId: { type: mongoose.Schema.Types.ObjectId, ref: "BulkOrder", required: true },
+  orderId: { 
+    type: mongoose.Schema.Types.ObjectId, 
+    ref: "BulkOrder", 
+    required: true 
+  },
 
-  fuelType: String,
+  fuelType: {
+    type: String,
+    required: true,
+  },  
 
-  quantity: Number,
+  quantity: { 
+    type: Number,
+    required: true
+  },
 
-  pricePerLiter: Number,
+  pricePerLiter: { 
+    type: Number,
+    required: true
+  }, 
 
-  totalAmount: Number,
+  totalAmount: { 
+    type:Number,
+    required: true
+  },
 
-  cardNumber: String, 
+  cardNumber: { 
+    type: String,
+    required: true
+  }, 
 
-  expiryDate: String,
+  expiryDate: {
+    type: String,
+    required: true
+  },
 
-  cvv: String,
+  cvv: {
+    type: String,
+    required: true
+  },
 
 }, { timestamps: true });
 
