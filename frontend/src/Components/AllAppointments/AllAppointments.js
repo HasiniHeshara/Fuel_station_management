@@ -45,30 +45,67 @@ function AllAppointments() {
   };
 
   const downloadPDF = () => {
+  if(appointments.length===0){
+    alert("No appoinments to export!");
+    return;
+  }
     const doc = new jsPDF();
-    doc.text("All EV Appointments", 14, 15);
+    const pageWidth = doc.internal.pageSize.getWidth();
+    const pageHeight = doc.internal.pageSize.getHeight();
 
-    const tableColumn = ["Name", "Email", "Vehicle", "Date", "Time Slot"];
-    const tableRows = [];
+    const img = new Image();
+    img.src = logo;
 
-    appointments.forEach((item) => {
-      const rowData = [
-        item.name,
-        item.gmail,
-        item.vtype,
-        item.date,
-        item.slot,
-      ];
-      tableRows.push(rowData);
-    });
+    img.onload =() => {
+      const logoWidth = 25;
+      const logoHeight = 25;
+      const logoX = (pageWidth - logoWidth) / 2;
+      const logoY = 10;
+      doc.addImage(img, "PNG", logoX, logoY, logoWidth, logoHeight);
 
+      doc.setFontSize(16);
+      doc.text("All EV Appointments - Dasu Fuel Station, Galle", pageWidth / 2, 45, { align: "center" });
+
+      const columns = [
+      { header: "#", dataKey: "no" },
+      { header: "Name", dataKey: "name" },
+      { header: "Email", dataKey: "email" },
+      { header: "Vehicle", dataKey: "vehicle" },
+      { header: "Date", dataKey: "date" },
+      { header: "Time Slot", dataKey: "slot" },
+    ];
+
+    const rows = appointments.map((item, index) => ({
+      no: index + 1,
+      name: item.name,
+      email: item.gmail,
+      vehicle: item.vtype,
+      date: item.date,
+      slot: item.slot,
+    }));
+      
     autoTable(doc, {
-      head: [tableColumn],
-      body: tableRows,
-      startY: 25,
+      startY: 55,
+      columns,
+      body: rows,
+      theme: "grid",
+      headStyles: { fillColor: [0, 102, 204] },
+      styles: { fontSize: 10 },
+      margin: { left: 14, right: 14 },
     });
 
-    doc.save("All_EV_Appointments.pdf");
+    const finalY = doc.lastAutoTable?.finalY || 70;
+    doc.setFontSize(12);
+    doc.text("Authorized Signature:", pageWidth - 80, finalY + 20);
+    doc.text("Authorized Signature:", pageWidth - 80, pageHeight - 30);
+
+
+    doc.save("All_EV_Appointments_Report.pdf");
+    };
+
+    img.onerror = () => {
+    alert("Error loading logo.");
+    };
   };
 
   const filteredAppointments = appointments.filter((item) =>
