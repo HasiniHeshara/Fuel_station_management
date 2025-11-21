@@ -1,3 +1,4 @@
+// src/pages/feedback/FeedbackInsertPage.jsx
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -7,7 +8,6 @@ import logo from "../../assets/f2.png";
 import "./FeedbackInsertPage.css";
 
 function FeedbackInsertPage() {
-
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
@@ -19,14 +19,45 @@ function FeedbackInsertPage() {
   });
 
   const [status, setStatus] = useState("");
+  const [errors, setErrors] = useState({ contact: "" });
+
+  // --- helper for contact validation ---
+  const isValidContact = (v) => /^0\d{9}$/.test(v); // e.g., 0712345678
 
   const handleChange = (e) => {
     const { name, value } = e.target;
+
+    // Normalize contact: keep digits only, max 10 chars
+    if (name === "contact") {
+      const digitsOnly = value.replace(/\D/g, "").slice(0, 10);
+      setFormData((prev) => ({ ...prev, [name]: digitsOnly }));
+
+      // live-validate contact
+      let msg = "";
+      if (digitsOnly.length === 0) msg = "Contact number is required.";
+      else if (!isValidContact(digitsOnly))
+        msg = "Enter a valid Sri Lankan number (0XXXXXXXXX).";
+      setErrors((prev) => ({ ...prev, contact: msg }));
+      return;
+    }
+
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setStatus("");
+
+    // Final check for contact before submit
+    if (!isValidContact(formData.contact)) {
+      setErrors((prev) => ({
+        ...prev,
+        contact: "Enter a valid Sri Lankan number (0XXXXXXXXX).",
+      }));
+      setStatus("Please fix the contact number and try again.");
+      return;
+    }
+
     try {
       await axios.post("http://localhost:5000/feedbacks", formData);
       setStatus("Feedback submitted successfully!");
@@ -38,11 +69,9 @@ function FeedbackInsertPage() {
         message: "",
       });
 
-       setTimeout(() => {
+      setTimeout(() => {
         navigate("/");
       }, 1000);
-
-
     } catch (error) {
       console.error("Error submitting feedback:", error);
       setStatus("Failed to submit feedback.");
@@ -71,7 +100,7 @@ function FeedbackInsertPage() {
           Submit Your Feedback
         </h2>
 
-        <form onSubmit={handleSubmit} className="feedback-form">
+        <form onSubmit={handleSubmit} className="feedback-form" noValidate>
           <input
             type="text"
             name="name"
@@ -101,14 +130,25 @@ function FeedbackInsertPage() {
             <option value="Bulk Order Section">Bulk Order Section</option>
           </select>
 
-          <input
-            type="tel"
-            name="contact"
-            placeholder="Contact Number"
-            value={formData.contact}
-            onChange={handleChange}
-            required
-          />
+          <div className="form-field">
+            <input
+              type="tel"
+              name="contact"
+              placeholder="Contact Number (0XXXXXXXXX)"
+              value={formData.contact}
+              onChange={handleChange}
+              required
+              inputMode="numeric"
+              maxLength={10}
+              aria-invalid={!!errors.contact}
+              aria-describedby="contact-error"
+            />
+            {errors.contact && (
+              <span id="contact-error" className="field-error">
+                {errors.contact}
+              </span>
+            )}
+          </div>
 
           <textarea
             name="message"
